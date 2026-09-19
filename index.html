@@ -50,7 +50,23 @@ code,pre,.mono{font-family:'JetBrains Mono','Fira Code',ui-monospace,Menlo,Conso
 .stat-top svg{width:14px;height:14px}
 .stat-val{font-size:17px;font-weight:700}
 
-.course-card{background:linear-gradient(160deg,var(--surface2),var(--surface));border:1px solid var(--line);border-radius:var(--radius);padding:18px;margin-bottom:22px;box-shadow:0 8px 28px rgba(0,0,0,.28);cursor:pointer;transition:transform .15s,border-color .15s}
+/* ===== COURSE CARD dengan efek stack ===== */
+.course-card-wrap{position:relative;padding-top:22px;margin-bottom:26px}
+.course-card-wrap::before,
+.course-card-wrap::after{
+  content:'';position:absolute;height:46px;
+  border:1px solid var(--line);border-bottom:none;
+  border-radius:var(--radius) var(--radius) 0 0;pointer-events:none;
+}
+.course-card-wrap::before{top:0;left:26px;right:26px;background:var(--surface3);opacity:.45}
+.course-card-wrap::after{top:11px;left:13px;right:13px;background:var(--surface2);opacity:.72}
+.course-card{
+  position:relative;z-index:1;
+  background:linear-gradient(160deg,var(--surface2),var(--surface));
+  border:1px solid var(--line);border-radius:var(--radius);padding:18px;
+  box-shadow:0 10px 30px rgba(0,0,0,.35);cursor:pointer;
+  transition:transform .15s,border-color .15s;
+}
 .course-card:active{transform:scale(.99)}
 .course-card:hover{border-color:var(--primary)}
 .course-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:4px}
@@ -61,25 +77,63 @@ code,pre,.mono{font-family:'JetBrains Mono','Fira Code',ui-monospace,Menlo,Conso
 .progress-fill{height:100%;background:linear-gradient(90deg,var(--primary),#5b8def);border-radius:20px;transition:width .6s cubic-bezier(.4,0,.2,1)}
 .course-meta{display:flex;justify-content:space-between;font-size:11.5px;color:var(--text2)}
 
-.section-head{display:flex;align-items:center;gap:10px;margin:26px 0 14px;font-size:13.5px;font-weight:700;color:var(--text3);letter-spacing:.2px;text-transform:uppercase}
+/* ===== SECTION HEADER ===== */
+.section-head{display:flex;align-items:center;gap:10px;margin:28px 0 8px;font-size:13.5px;font-weight:700;color:var(--text3);letter-spacing:.2px;text-transform:uppercase}
 .section-head::after{content:'';flex:1;height:1px;background:var(--line)}
-.path{display:flex;flex-direction:column;align-items:center;position:relative}
-.path-node{display:flex;align-items:center;gap:14px;width:100%;max-width:420px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-sm);padding:13px 15px;text-align:left;transition:transform .15s,border-color .15s,box-shadow .15s;position:relative;z-index:2}
-.path-node:not(.locked):active{transform:scale(.985)}
-.path-node.done{border-color:rgba(52,211,153,.35);background:rgba(52,211,153,.07)}
-.path-node.active{border-color:var(--primary);background:linear-gradient(135deg,rgba(139,92,246,.16),rgba(77,184,255,.09));box-shadow:0 0 0 1px rgba(139,92,246,.35),0 6px 22px rgba(139,92,246,.28);animation:pop .45s cubic-bezier(.34,1.56,.64,1)}
-.path-node.locked{opacity:.5;cursor:not-allowed}
-@keyframes pop{0%{transform:scale(.94);opacity:.4}100%{transform:scale(1);opacity:1}}
-.node-icon{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;flex-shrink:0;background:var(--surface3);color:var(--text2)}
-.path-node.done .node-icon{background:rgba(52,211,153,.18);color:var(--success)}
-.path-node.active .node-icon{background:var(--primary);color:#fff;box-shadow:0 4px 14px rgba(139,92,246,.45)}
-.node-icon svg{width:19px;height:19px}
-.node-text{flex:1;min-width:0}
-.node-title{font-size:13.5px;font-weight:600;line-height:1.35;margin:0}
-.node-sub{font-size:11px;color:var(--text2);margin:2px 0 0}
-.connector{width:3px;height:20px;background:var(--line);border-radius:2px;z-index:1}
-.connector.on{background:linear-gradient(180deg,var(--success),var(--primary))}
 
+/* ===== LEARNING PATH zigzag + dot grid ===== */
+.path{
+  position:relative;display:block;padding:16px 0 8px;
+  background-image:radial-gradient(circle, rgba(139,92,246,.16) 1.3px, transparent 1.4px);
+  background-size:22px 22px;background-position:0 0;
+}
+.path-svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+.path-node{
+  position:absolute;display:flex;align-items:center;gap:12px;padding:0 15px;
+  border-radius:16px;border:2px solid transparent;background:var(--surface);
+  text-align:left;color:var(--text);box-sizing:border-box;font:inherit;cursor:pointer;
+  transition:transform .18s,box-shadow .2s,border-color .18s;
+}
+.path-node:not(.locked):active{transform:scale(.97)}
+.path-node.locked{cursor:not-allowed;pointer-events:none}
+.path-node .node-icon{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;flex-shrink:0;background:var(--surface3);color:var(--text2);transition:background .2s,color .2s}
+.path-node .node-icon svg{width:19px;height:19px}
+.path-node .node-text{flex:1;min-width:0}
+.path-node .node-title{font-size:13.5px;font-weight:600;line-height:1.3;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.path-node .node-sub{font-size:11px;color:var(--text2);margin:3px 0 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* ---- Node SELESAI: gradasi glossy, selang-seling warna ---- */
+.path-node.done{
+  border-color:transparent;color:#fff;
+  box-shadow:0 6px 18px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.18),inset 0 -1px 0 rgba(0,0,0,.15);
+}
+.path-node.done.node-color-0{background:linear-gradient(135deg,#a78bfa 0%,#7c3aed 100%)}
+.path-node.done.node-color-1{background:linear-gradient(135deg,#7dd3fc 0%,#3b82f6 100%)}
+.path-node.done.node-color-2{background:linear-gradient(135deg,#c4b5fd 0%,#8b5cf6 100%)}
+.path-node.done.node-color-3{background:linear-gradient(135deg,#93c5fd 0%,#2563eb 100%)}
+.path-node.done .node-icon{background:rgba(255,255,255,.24);color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.3)}
+.path-node.done .node-title{color:#fff}
+.path-node.done .node-sub{color:rgba(255,255,255,.85)}
+
+/* ---- Node BERIKUTNYA: cincin ungu + glow ---- */
+.path-node.active{
+  background:linear-gradient(135deg, rgba(139,92,246,.22), rgba(77,184,255,.12));
+  border-color:var(--primary);
+  box-shadow:0 0 0 3px rgba(139,92,246,.22),0 0 26px rgba(139,92,246,.38),inset 0 1px 0 rgba(255,255,255,.06);
+  animation:nodeEntrance .5s cubic-bezier(.34,1.56,.64,1);
+}
+@keyframes nodeEntrance{0%{transform:scale(.93);opacity:.5}100%{transform:scale(1);opacity:1}}
+.path-node.active .node-icon{background:var(--primary);color:#fff;box-shadow:0 4px 14px rgba(139,92,246,.55)}
+.path-node.active .node-title{color:var(--text)}
+.path-node.active .node-sub{color:#c4b5fd}
+
+/* ---- Node TERKUNCI: lebih redup ---- */
+.path-node.locked{background:rgba(24,26,54,.75);border-color:rgba(58,63,117,.45);opacity:.45}
+.path-node.locked .node-icon{background:rgba(31,33,66,.9);color:rgba(155,157,196,.55)}
+.path-node.locked .node-title{color:rgba(155,157,196,.85)}
+.path-node.locked .node-sub{color:rgba(155,157,196,.55)}
+
+/* ===== LESSON ===== */
 .lesson-head{position:sticky;top:0;z-index:30;background:rgba(20,21,43,.94);backdrop-filter:blur(12px);padding:14px 0 10px;border-bottom:1px solid var(--line);margin-bottom:18px}
 .lesson-head-row{display:flex;align-items:center;gap:12px}
 .icon-btn{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;background:var(--surface2);color:var(--text2);flex-shrink:0;transition:background .15s,color .15s}
@@ -238,40 +292,45 @@ code,pre,.mono{font-family:'JetBrains Mono','Fira Code',ui-monospace,Menlo,Conso
 .profile-photo svg{width:46px;height:46px;color:var(--text2)}
 .photo-edit-badge{position:absolute;right:2px;bottom:2px;width:32px;height:32px;border-radius:50%;background:var(--primary);display:grid;place-items:center;border:3px solid var(--bg);pointer-events:none}
 .photo-edit-badge svg{width:14px;height:14px}
-
 .profile-name{text-align:center;margin:0 0 4px;font-size:21px;font-weight:700;letter-spacing:-.3px;cursor:pointer;padding:4px 8px;border-radius:10px;display:inline-block;transition:background .15s}
 .profile-name:hover{background:var(--surface2)}
 .profile-name-wrap{text-align:center;margin-bottom:4px}
-
 .profile-bio{text-align:center;font-size:13.5px;color:var(--text3);max-width:320px;margin:0 auto 6px;line-height:1.5;padding:0 16px}
 .profile-actions{display:flex;justify-content:center;margin-bottom:20px}
 .edit-link{font-size:13px;color:var(--primary);display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:11px;transition:background .15s;font-weight:600}
 .edit-link:hover{background:rgba(139,92,246,.12)}
 .edit-link svg{width:14px;height:14px}
-
 .stat-row-2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
 .stat-card{background:linear-gradient(160deg,var(--surface2),var(--surface));border:1px solid var(--line);border-radius:var(--radius);padding:16px 12px;display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center}
 .stat-card-ico{font-size:22px;line-height:1;margin-bottom:2px}
 .stat-card-val{font-size:24px;font-weight:700;letter-spacing:-.5px}
 .stat-card-lbl{font-size:10.5px;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;font-weight:600}
-
 .share-btn{background:transparent;border:1.5px solid var(--line);margin-bottom:12px;color:var(--text3);font-weight:600}
 .share-btn:hover{background:var(--surface2);color:var(--text)}
 .share-btn svg{width:17px;height:17px}
-
 .storage-note{text-align:center;font-size:11px;color:var(--text2);margin:4px 0 24px;display:flex;align-items:center;justify-content:center;gap:6px}
 .storage-note svg{width:13px;height:13px}
-
 .section-label{font-size:12px;color:var(--text3);font-weight:700;text-transform:uppercase;letter-spacing:.4px;margin:16px 0 10px;display:flex;align-items:center;gap:8px}
 .section-label::after{content:'';flex:1;height:1px;background:var(--line)}
-
 .level-tag{display:inline-block;font-size:11.5px;font-weight:600;padding:4px 12px;border-radius:20px;background:rgba(139,92,246,.2);color:#c4b5fd}
 .stat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
 .stat-box{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-sm);padding:14px}
 .stat-box .lbl{font-size:11.5px;color:var(--text2);margin-bottom:4px}
 .stat-box .val{font-size:19px;font-weight:700}
-.badge-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-.badge{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-sm);padding:13px;text-align:center;opacity:.42;transition:opacity .2s,border-color .2s}
+
+/* ===== BADGE GRID (fix ghosting) ===== */
+.badge-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);
+  grid-auto-flow:row;grid-auto-rows:auto;gap:10px;
+  contain:layout paint style;isolation:isolate;position:relative;
+}
+.badge{
+  position:relative;grid-column:auto;grid-row:auto;
+  background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--radius-sm);padding:13px;text-align:center;opacity:.42;
+  transition:opacity .2s,border-color .2s;
+  transform:translateZ(0);backface-visibility:hidden;
+}
 .badge.on{opacity:1;border-color:rgba(139,92,246,.5);background:rgba(139,92,246,.08)}
 .badge-ico{width:34px;height:34px;border-radius:10px;margin:0 auto 8px;display:grid;place-items:center;background:var(--surface2);color:var(--text2)}
 .badge.on .badge-ico{background:rgba(139,92,246,.25);color:#c4b5fd}
@@ -296,7 +355,6 @@ code,pre,.mono{font-family:'JetBrains Mono','Fira Code',ui-monospace,Menlo,Conso
 .auth-error{font-size:12.5px;color:#fca5a5;background:rgba(248,113,113,.1);border:1px solid rgba(248,113,113,.3);padding:9px 12px;border-radius:10px;margin-bottom:12px;display:none}
 .auth-error.show{display:block}
 
-/* ===== MODAL GENERIC ===== */
 #modal{position:fixed;inset:0;z-index:300;background:rgba(9,10,24,.78);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:22px}
 #modal.show{display:flex;animation:fadeUp .2s ease}
 .modal-box{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px;max-width:400px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.6)}
@@ -308,7 +366,6 @@ code,pre,.mono{font-family:'JetBrains Mono','Fira Code',ui-monospace,Menlo,Conso
 textarea.modal-input{resize:vertical;min-height:80px;max-height:140px;line-height:1.5}
 .modal-char{font-size:11px;color:var(--text2);text-align:right;margin:4px 0 14px}
 
-/* ===== BOTTOM SHEET ===== */
 #sheet{position:fixed;inset:0;z-index:250;background:rgba(9,10,24,.65);backdrop-filter:blur(4px);display:none;align-items:flex-end;justify-content:center}
 #sheet.show{display:flex;animation:fadeIn .18s ease}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
@@ -344,7 +401,6 @@ textarea.modal-input{resize:vertical;min-height:80px;max-height:140px;line-heigh
 .switch.on{background:var(--primary)}
 .switch.on::after{transform:translateX(20px)}
 
-/* ===== MASCOT ===== */
 .mascot{position:fixed;left:12px;right:12px;bottom:78px;z-index:180;display:flex;align-items:flex-end;gap:8px;opacity:0;transform:translateY(24px);transition:opacity .3s,transform .3s;pointer-events:none}
 .mascot.show{opacity:1;transform:translateY(0);pointer-events:auto}
 .mascot-avatar{width:62px;height:62px;flex-shrink:0;filter:drop-shadow(0 6px 14px rgba(139,92,246,.4));animation:bounce 2.4s ease-in-out infinite}
@@ -369,6 +425,7 @@ textarea.modal-input{resize:vertical;min-height:80px;max-height:140px;line-heigh
   .split .preview-pane{border-radius:var(--radius);border:1px solid var(--line);overflow:hidden}
   .split .preview-pane iframe{height:220px}
   .badge-grid{grid-template-columns:repeat(3,1fr)}
+  .stat-grid{grid-template-columns:repeat(4,1fr)}
   #sheet{align-items:center}
   .sheet-box{border-radius:22px;border-bottom:1px solid var(--line);max-height:80vh}
   .mascot{left:auto;right:24px;bottom:24px;max-width:420px}
@@ -404,13 +461,15 @@ textarea.modal-input{resize:vertical;min-height:80px;max-height:140px;line-heigh
           <div class="stat"><div class="stat-top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2s4 5 4 9a4 4 0 0 1-8 0c0-4 4-9 4-9z"/></svg>Streak</div><div class="stat-val" id="stat-streak">0</div></div>
           <div class="stat"><div class="stat-top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 3v9l6 3"/></svg>Progres</div><div class="stat-val" id="stat-prog">0%</div></div>
         </div>
-        <div class="course-card" id="course-card">
-          <div class="course-top">
-            <div><h2 class="course-title">Dasar-Dasar HTML</h2><p class="course-sub" id="course-sub">HTML Fundamentals</p></div>
-            <span class="course-pill" id="course-pill">Level 1</span>
+        <div class="course-card-wrap">
+          <div class="course-card" id="course-card">
+            <div class="course-top">
+              <div><h2 class="course-title">Dasar-Dasar HTML</h2><p class="course-sub" id="course-sub">HTML Fundamentals</p></div>
+              <span class="course-pill" id="course-pill">Level 1</span>
+            </div>
+            <div class="progress-track"><div class="progress-fill" id="course-prog" style="width:0%"></div></div>
+            <div class="course-meta"><span id="course-count">0 / 0 lesson</span><span id="course-xp">0 XP</span></div>
           </div>
-          <div class="progress-track"><div class="progress-fill" id="course-prog" style="width:0%"></div></div>
-          <div class="course-meta"><span id="course-count">0 / 0 lesson</span><span id="course-xp">0 XP</span></div>
         </div>
         <div id="path-container"></div>
       </section>
@@ -436,10 +495,8 @@ textarea.modal-input{resize:vertical;min-height:80px;max-height:140px;line-heigh
         <div id="projects-list"></div>
       </section>
 
-      <!-- ============ PROFILE ============ -->
       <section id="screen-profile" class="hidden">
         <div class="page-head" style="padding-bottom:2px"><h1 class="page-title">Profil</h1></div>
-
         <div class="profile-photo-wrap">
           <button class="profile-photo" id="prof-photo-btn" aria-label="Ganti foto profil">
             <span id="prof-photo-content"></span>
@@ -448,19 +505,16 @@ textarea.modal-input{resize:vertical;min-height:80px;max-height:140px;line-heigh
             <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></svg>
           </div>
         </div>
-
         <div class="profile-name-wrap">
           <h2 class="profile-name" id="prof-name" title="Ketuk untuk ubah nama"></h2>
         </div>
         <p class="profile-bio" id="prof-bio-display"></p>
-
         <div class="profile-actions">
           <button class="edit-link" id="prof-bio-btn">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
             <span id="prof-bio-label">Tambah bio</span>
           </button>
         </div>
-
         <div class="stat-row-2">
           <div class="stat-card">
             <div class="stat-card-ico">🔥</div>
@@ -473,26 +527,21 @@ textarea.modal-input{resize:vertical;min-height:80px;max-height:140px;line-heigh
             <div class="stat-card-lbl">Total XP</div>
           </div>
         </div>
-
         <button class="btn share-btn" id="share-btn">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           Bagikan progresku
         </button>
-
         <p class="storage-note">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
           Profil tersimpan di perangkat ini
         </p>
-
         <div class="section-label">Level & Progress</div>
         <div class="stat-grid">
           <div class="stat-box"><div class="lbl">Level</div><div class="val" id="prof-level" style="font-size:15px">HTML Newbie</div></div>
           <div class="stat-box"><div class="lbl">Lesson Selesai</div><div class="val" id="prof-lessons">0</div></div>
         </div>
-
         <div class="section-label" style="margin-top:20px">Pencapaian</div>
         <div class="badge-grid" id="badge-grid"></div>
-
         <div style="margin-top:28px;display:flex;flex-direction:column;gap:10px">
           <button class="btn ghost" id="logout-btn">
             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
@@ -511,13 +560,10 @@ textarea.modal-input{resize:vertical;min-height:80px;max-height:140px;line-heigh
 
 <nav id="bottomnav"></nav>
 
-<!-- ============ AUTH SCREENS ============ -->
 <section id="screen-auth" class="hidden">
   <div class="auth-screen" id="auth-create">
     <div class="auth-card">
-      <div class="auth-logo">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-      </div>
+      <div class="auth-logo"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
       <h1 class="auth-title">Buat Profil</h1>
       <p class="auth-sub">Isi nama kamu untuk mulai belajar. Semua data hanya tersimpan di perangkat ini.</p>
       <div class="auth-field">
@@ -536,9 +582,7 @@ textarea.modal-input{resize:vertical;min-height:80px;max-height:140px;line-heigh
 
   <div class="auth-screen hidden" id="auth-login">
     <div class="auth-card">
-      <div class="auth-logo">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-      </div>
+      <div class="auth-logo"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
       <h1 class="auth-title" id="login-title">Halo lagi!</h1>
       <p class="auth-sub" id="login-sub">Masukkan PIN untuk melanjutkan.</p>
       <div class="auth-field" id="login-pin-field">
@@ -551,7 +595,6 @@ textarea.modal-input{resize:vertical;min-height:80px;max-height:140px;line-heigh
   </div>
 </section>
 
-<!-- SHEET -->
 <div id="sheet">
   <div class="sheet-box">
     <div class="sheet-handle"></div>
@@ -575,7 +618,6 @@ textarea.modal-input{resize:vertical;min-height:80px;max-height:140px;line-heigh
   </div>
 </div>
 
-<!-- MASCOT -->
 <div class="mascot" id="mascot">
   <div class="mascot-avatar" id="mascot-avatar"></div>
   <div class="mascot-msg">
@@ -584,7 +626,6 @@ textarea.modal-input{resize:vertical;min-height:80px;max-height:140px;line-heigh
   </div>
 </div>
 
-<!-- GENERIC MODAL -->
 <div id="modal">
   <div class="modal-box">
     <h3 class="modal-title" id="modal-title">Konfirmasi</h3>
@@ -601,9 +642,6 @@ textarea.modal-input{resize:vertical;min-height:80px;max-height:140px;line-heigh
 <div class="toast" id="toast"></div>
 
 <script>
-/* ============================================================
-   KONFIG
-   ============================================================ */
 const CONFIG = {
   XP_LESSON: 20, XP_QUIZ: 10, XP_CHALLENGE: 30, XP_PROJECT: 100,
   HARD_MULT: 1.5,
@@ -618,7 +656,7 @@ const CONFIG = {
 };
 
 /* ============================================================
-   LESSONS (struktur sama seperti revisi sebelumnya)
+   KURIKULUM
    ============================================================ */
 const LESSONS = [
 { id:'s1l1', section:'HTML Fundamentals', title:'Apa itu HTML?',
@@ -916,7 +954,7 @@ const LESSONS = [
     { t:'card', v:'warn', b:'Jangan pakai <code>&lt;div&gt;</code> untuk semua hal.' },
     { t:'x', k:'quiz', q:'Manakah yang termasuk tag semantik?',
       opts:[['<div>',false],['<span>',false],['<header>',true],['<b>',false]],
-      ex:'<header> punya makna jelas. <div> dan <span> netral.' } ] },
+      ex:'<header> punya makna jelas.' } ] },
 { id:'s6l2', section:'Semantic HTML', title:'<header>, <nav>, <main>', steps:[{ t:'card', v:'def', b:'// TODO: isi konten.' }] },
 { id:'s6l3', section:'Semantic HTML', title:'<section> & <article>', steps:[{ t:'card', v:'def', b:'// TODO: isi konten.' }] },
 { id:'s6l4', section:'Semantic HTML', title:'<footer>', steps:[{ t:'card', v:'def', b:'// TODO: isi konten.' }] },
@@ -1031,7 +1069,6 @@ const DEFAULT_STATE = {
   completed:{}, current:null, xp:0, streak:0, lastActive:null,
   achievements:[], projects:{}, checkpoints:{},
   hardMode:{}, seenTip:{},
-  // Profile & auth (lokal)
   name:'', bio:'', photo:null, pin:null,
   hasProfile:false, sessionActive:false
 };
@@ -1183,7 +1220,6 @@ function renderNav(){
   });
 }
 function showScreen(id){
-  // keluar dari mode auth
   $('#screen-auth').classList.add('hidden');
   $('#bottomnav').style.display = '';
   ['home','lesson','practice','projects','profile'].forEach(s=>{
@@ -1201,7 +1237,7 @@ function isDone(id){ return !!state.completed[id]; }
 function activeLessonId(){ for(const l of LESSONS){ if(!isDone(l.id)) return l.id; } return null; }
 
 /* ============================================================
-   AUTH (lokal simulasi)
+   AUTH
    ============================================================ */
 function showAuth(mode){
   ['home','lesson','practice','projects','profile'].forEach(s=>{
@@ -1226,20 +1262,13 @@ function showAuth(mode){
     setTimeout(()=>$('#create-name').focus(), 100);
   }
 }
-
 $('#create-submit').onclick = ()=>{
   const name = $('#create-name').value.trim();
   const pin = $('#create-pin').value.trim();
   const err = $('#create-error');
   err.classList.remove('show');
-  if(!name){
-    err.textContent = 'Nama wajib diisi.';
-    err.classList.add('show'); return;
-  }
-  if(pin && !/^\d{4}$/.test(pin)){
-    err.textContent = 'PIN harus tepat 4 digit angka.';
-    err.classList.add('show'); return;
-  }
+  if(!name){ err.textContent = 'Nama wajib diisi.'; err.classList.add('show'); return; }
+  if(pin && !/^\d{4}$/.test(pin)){ err.textContent = 'PIN harus tepat 4 digit angka.'; err.classList.add('show'); return; }
   state.name = name;
   state.pin = pin || null;
   state.hasProfile = true;
@@ -1251,18 +1280,12 @@ $('#create-submit').onclick = ()=>{
 };
 $('#create-name').addEventListener('keydown', e=>{ if(e.key === 'Enter') $('#create-submit').click(); });
 $('#create-pin').addEventListener('input', e=>{ e.target.value = e.target.value.replace(/\D/g,'').slice(0,4); });
-
 $('#login-submit').onclick = ()=>{
   const err = $('#login-error');
   err.classList.remove('show');
   if(state.pin){
     const entered = $('#login-pin').value.trim();
-    if(entered !== state.pin){
-      err.textContent = 'PIN salah. Coba lagi.';
-      err.classList.add('show');
-      $('#login-pin').value = '';
-      return;
-    }
+    if(entered !== state.pin){ err.textContent = 'PIN salah. Coba lagi.'; err.classList.add('show'); $('#login-pin').value = ''; return; }
   }
   state.sessionActive = true;
   saveState();
@@ -1272,7 +1295,7 @@ $('#login-pin').addEventListener('input', e=>{ e.target.value = e.target.value.r
 $('#login-pin').addEventListener('keydown', e=>{ if(e.key === 'Enter') $('#login-submit').click(); });
 
 /* ============================================================
-   HOME
+   HOME — learning path zigzag
    ============================================================ */
 function renderHome(){
   touchStreak();
@@ -1295,39 +1318,127 @@ function renderHome(){
     const sec = active ? active.section : CONFIG.SECTIONS[CONFIG.SECTIONS.length-1];
     openUnitSheet(sec);
   };
+
   const container = $('#path-container');
   container.innerHTML = '';
+
+  const NODE_W_RATIO = 0.66;
+  const NODE_H = 66;
+  const V_GAP = 36;
+  const ROW_H = NODE_H + V_GAP;
+  const POSITIONS = [0, 0.17, 0.34, 0.17, 0];
+
   CONFIG.SECTIONS.forEach(sec=>{
     const lessons = LESSONS.filter(l=>l.section===sec);
     if(!lessons.length) return;
+
     const head = document.createElement('div');
-    head.className = 'section-head'; head.textContent = sec;
+    head.className = 'section-head';
+    head.textContent = sec;
     container.appendChild(head);
+
     const path = document.createElement('div');
     path.className = 'path';
+    container.appendChild(path);
+
+    const totalH = lessons.length * ROW_H;
+    path.style.height = totalH + 'px';
+
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('class', 'path-svg');
+    path.appendChild(svg);
+
     lessons.forEach((l, i)=>{
-      if(i > 0){
-        const c = document.createElement('div');
-        c.className = 'connector' + (isDone(lessons[i-1].id) ? ' on' : '');
-        path.appendChild(c);
-      }
+      const col = POSITIONS[i % POSITIONS.length];
+      const top = i * ROW_H;
       const done = isDone(l.id);
       const isActive = !done && l.id === activeId;
       const locked = !done && !isActive;
+
       const btn = document.createElement('button');
-      btn.className = 'path-node' + (done?' done':'') + (isActive?' active':'') + (locked?' locked':'');
+      btn.className = 'path-node'
+        + (done ? ' done' : '')
+        + (isActive ? ' active' : '')
+        + (locked ? ' locked' : '');
+      btn.classList.add('node-color-' + (i % 4));
       btn.disabled = locked;
-      const subText = done ? 'Selesai • ketuk untuk ulang' : (isActive ? 'Mulai sekarang' : 'Terkunci');
+      btn.style.position = 'absolute';
+      btn.style.top = top + 'px';
+      btn.style.left = (col * 100) + '%';
+      btn.style.width = (NODE_W_RATIO * 100) + '%';
+      btn.style.height = NODE_H + 'px';
+
+      const subText = done
+        ? 'Selesai • ketuk untuk ulang'
+        : (isActive ? 'Mulai sekarang' : 'Terkunci');
+
       const iconSvg = done
         ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>'
         : (locked
             ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>'
             : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><polygon points="6 4 20 12 6 20 6 4"/></svg>');
-      btn.innerHTML = '<div class="node-icon">'+iconSvg+'</div><div class="node-text"><p class="node-title">'+esc(l.title)+'</p><p class="node-sub">'+subText+'</p></div>';
+
+      btn.innerHTML =
+        '<div class="node-icon">'+iconSvg+'</div>' +
+        '<div class="node-text">' +
+          '<p class="node-title">'+esc(l.title)+'</p>' +
+          '<p class="node-sub">'+subText+'</p>' +
+        '</div>';
       btn.onclick = ()=>openLesson(l.id);
       path.appendChild(btn);
     });
-    container.appendChild(path);
+
+    function drawConnectors(){
+      const w = path.clientWidth;
+      if(!w) return;
+      svg.setAttribute('viewBox', '0 0 ' + w + ' ' + totalH);
+      svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+      while(svg.firstChild) svg.removeChild(svg.firstChild);
+
+      for(let i = 0; i < lessons.length - 1; i++){
+        const curr = lessons[i];
+        const pos1 = POSITIONS[i % POSITIONS.length];
+        const pos2 = POSITIONS[(i + 1) % POSITIONS.length];
+        const top1 = i * ROW_H;
+        const top2 = (i + 1) * ROW_H;
+
+        const x1 = w * (pos1 + NODE_W_RATIO / 2);
+        const x2 = w * (pos2 + NODE_W_RATIO / 2);
+        const y1 = top1 + NODE_H;
+        const y2 = top2;
+        const midY = (y1 + y2) / 2;
+
+        const d = 'M ' + x1 + ' ' + y1 +
+                  ' L ' + x1 + ' ' + midY +
+                  ' L ' + x2 + ' ' + midY +
+                  ' L ' + x2 + ' ' + y2;
+
+        const line = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        line.setAttribute('d', d);
+        line.setAttribute('fill', 'none');
+        line.setAttribute('stroke-linecap', 'round');
+        line.setAttribute('stroke-linejoin', 'round');
+        line.setAttribute('stroke-width', '9');
+        line.setAttribute('stroke', isDone(curr.id) ? '#8b5cf6' : '#262a52');
+        svg.appendChild(line);
+
+        if(isDone(curr.id)){
+          const hi = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+          hi.setAttribute('d', d);
+          hi.setAttribute('fill', 'none');
+          hi.setAttribute('stroke-linecap', 'round');
+          hi.setAttribute('stroke-linejoin', 'round');
+          hi.setAttribute('stroke-width', '3');
+          hi.setAttribute('stroke', 'rgba(196,181,253,.55)');
+          svg.appendChild(hi);
+        }
+      }
+    }
+    requestAnimationFrame(drawConnectors);
+    if(window.ResizeObserver){
+      const ro = new ResizeObserver(drawConnectors);
+      ro.observe(path);
+    }
   });
 }
 
@@ -1503,7 +1614,7 @@ function finishLesson(){
 }
 
 /* ============================================================
-   EXERCISE HELPERS
+   EXERCISE HELPERS + ENGINE
    ============================================================ */
 function buildExpected(step){
   if(step.k === 'arrange' || step.k === 'fill'){
@@ -1526,10 +1637,6 @@ function displayAnswer(step){
 }
 function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
 
-/* ============================================================
-   EXERCISE ENGINE
-   ============================================================ */
-let inPractice = false;
 function renderExercise(step, c){
   const wrap = document.createElement('div');
   wrap.innerHTML = '<p class="lesson-eyebrow">Latihan</p><p class="ex-prompt">'+step.q+'</p>';
@@ -1553,7 +1660,6 @@ function renderExercise(step, c){
     tip.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg><span>'+tipText+'</span>';
     c.appendChild(tip);
   }
-
   function addFeedback(type, html){
     const old = c.querySelector('.feedback'); if(old) old.remove();
     const fb = document.createElement('div');
@@ -1629,7 +1735,6 @@ function renderExercise(step, c){
     c.appendChild(box);
     return;
   }
-
   if(step.k === 'type' || step.k === 'fix'){
     const initial = step.k === 'fix' ? step.broken : (step.starter || '');
     const editor = makeEditor(initial, step.k === 'fix' ? 'Perbaiki kode di bawah' : 'Tulis kode di sini');
@@ -1649,7 +1754,6 @@ function renderExercise(step, c){
     };
     return;
   }
-
   if(step.k === 'arrange' || step.k === 'fill'){
     if(hard){
       const expected = buildExpected(step);
@@ -1828,7 +1932,6 @@ function startPractice(cat){
   const shuffled = pool.sort(()=>Math.random()-0.5).slice(0, 5);
   if(!shuffled.length){ toast('Belum ada soal.'); return; }
   practiceSession = { cat, queue: shuffled, idx: 0, correct: 0 };
-  inPractice = true;
   showScreen('lesson');
   renderPracticeQuestion();
 }
@@ -1847,7 +1950,7 @@ function renderPracticeQuestion(){
         '<button class="btn" id="back-home">Kembali</button>' +
       '</div>';
     if(ps.correct >= Math.ceil(ps.queue.length/2)) addXp(CONFIG.XP_CHALLENGE);
-    $('#back-home').onclick = ()=>{ practiceSession = null; inPractice = false; showScreen('practice'); };
+    $('#back-home').onclick = ()=>{ practiceSession = null; showScreen('practice'); };
     practiceSession = null;
     return;
   }
@@ -1939,18 +2042,13 @@ function renderProfile(){
   const lv = getLevel(state.xp);
   const done = Object.keys(state.completed).length;
 
-  // Foto profil
   const photoContent = $('#prof-photo-content');
   if(state.photo){
     photoContent.innerHTML = '<img src="'+state.photo+'" alt="Foto profil">';
   } else {
     photoContent.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>';
   }
-
-  // Nama
   $('#prof-name').textContent = state.name || 'Pelajar';
-
-  // Bio
   const bioDisplay = $('#prof-bio-display');
   const bioLabel = $('#prof-bio-label');
   if(state.bio){
@@ -1961,31 +2059,41 @@ function renderProfile(){
     bioDisplay.style.display = 'none';
     bioLabel.textContent = 'Tambah bio';
   }
-
-  // Stats utama
   $('#prof-streak').textContent = state.streak;
   $('#prof-xp').textContent = state.xp;
-
-  // Level & progress
   $('#prof-level').textContent = lv.name;
   $('#prof-lessons').textContent = done;
 
-  // Badge
-  const grid = $('#badge-grid');
-  grid.innerHTML = '';
-  ACHIEVEMENTS.forEach(a=>{
+  // Badge: rebuild container penuh untuk cegah ghosting
+  const oldGrid = $('#badge-grid');
+  const grid = document.createElement('div');
+  grid.className = 'badge-grid';
+  grid.id = 'badge-grid';
+  if(oldGrid && oldGrid.parentNode){
+    oldGrid.parentNode.replaceChild(grid, oldGrid);
+  }
+  const ICONS = {
+    star:'<polygon points="12 2 15 9 22 9 17 14 19 21 12 17 5 21 7 14 2 9 9 9 12 2"/>',
+    fire:'<path d="M12 2s4 5 4 9a4 4 0 0 1-8 0c0-4 4-9 4-9z"/>',
+    bolt:'<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>',
+    flag:'<path d="M4 22V4h12l-2 4 2 4H4"/>',
+    box:'<path d="M3 7h18v13H3z"/><path d="M8 7V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v3"/>',
+    compass:'<circle cx="12" cy="12" r="9"/><polygon points="16 8 14 14 8 16 10 10 16 8"/>'
+  };
+  ACHIEVEMENTS.forEach((a, idx)=>{
     const on = state.achievements.includes(a.id);
-    const icons = {
-      star:'<polygon points="12 2 15 9 22 9 17 14 19 21 12 17 5 21 7 14 2 9 9 9 12 2"/>',
-      fire:'<path d="M12 2s4 5 4 9a4 4 0 0 1-8 0c0-4 4-9 4-9z"/>',
-      bolt:'<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>',
-      flag:'<path d="M4 22V4h12l-2 4 2 4H4"/>',
-      box:'<path d="M3 7h18v13H3z"/><path d="M8 7V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v3"/>',
-      compass:'<circle cx="12" cy="12" r="9"/><polygon points="16 8 14 14 8 16 10 10 16 8"/>'
-    };
     const d = document.createElement('div');
-    d.className = 'badge' + (on?' on':'');
-    d.innerHTML = '<div class="badge-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">'+(icons[a.icon]||icons.star)+'</svg></div><p class="badge-name">'+a.name+'</p><p class="badge-desc">'+a.desc+'</p>';
+    d.className = 'badge' + (on ? ' on' : '');
+    d.dataset.badgeId = a.id;
+    d.dataset.badgeIdx = idx;
+    d.innerHTML =
+      '<div class="badge-ico">' +
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">' +
+          (ICONS[a.icon] || ICONS.star) +
+        '</svg>' +
+      '</div>' +
+      '<p class="badge-name">' + a.name + '</p>' +
+      '<p class="badge-desc">' + a.desc + '</p>';
     grid.appendChild(d);
   });
 }
@@ -2026,7 +2134,6 @@ $('#prof-photo-btn').onclick = ()=>{
   input.click();
 };
 
-/* ---- Edit nama & bio via modal ---- */
 function openEditModal(opts){
   const field = $('#modal-field');
   field.innerHTML = '';
@@ -2037,7 +2144,6 @@ function openEditModal(opts){
   if(opts.maxlength) input.maxLength = opts.maxlength;
   if(opts.placeholder) input.placeholder = opts.placeholder;
   field.appendChild(input);
-
   let charEl = null;
   if(opts.multiline && opts.maxlength){
     charEl = document.createElement('p');
@@ -2046,7 +2152,6 @@ function openEditModal(opts){
     field.appendChild(charEl);
     input.addEventListener('input', ()=>{ charEl.textContent = input.value.length + ' / ' + opts.maxlength; });
   }
-
   showModal(opts.title, opts.subtitle || '', opts.saveText || 'Simpan', ()=>{
     const val = input.value.trim();
     if(opts.required && !val){ toast('Tidak boleh kosong.'); return; }
@@ -2071,15 +2176,11 @@ $('#prof-bio-btn').onclick = ()=>{
   });
 };
 
-/* ---- Bagikan progres ---- */
 $('#share-btn').onclick = async ()=>{
   const name = state.name || 'Pelajar';
   const text = 'Aku ' + name + ' — sudah ' + state.xp + ' XP di TagQuest, streak ' + state.streak + ' hari belajar HTML! 🔥';
   if(navigator.share){
-    try {
-      await navigator.share({ title:'Progres TagQuest', text });
-      return;
-    } catch(e){ /* dibatalkan atau error — fallback */ }
+    try { await navigator.share({ title:'Progres TagQuest', text }); return; } catch(e){}
   }
   try {
     await navigator.clipboard.writeText(text);
@@ -2096,7 +2197,6 @@ $('#share-btn').onclick = async ()=>{
   }
 };
 
-/* ---- Keluar ---- */
 $('#logout-btn').onclick = ()=>{
   showModal('Keluar dari profil?', 'Progress belajarmu tetap tersimpan di perangkat ini. Kamu bisa masuk lagi kapan saja dengan PIN.', 'Keluar', ()=>{
     state.sessionActive = false;
@@ -2139,7 +2239,7 @@ $('#reset-btn').onclick = ()=>{
 };
 
 $('#lesson-close').onclick = ()=>{
-  if(practiceSession){ practiceSession = null; inPractice = false; showScreen('practice'); return; }
+  if(practiceSession){ practiceSession = null; showScreen('practice'); return; }
   if(curLesson && curLesson.id === '__practice__'){ showScreen('practice'); return; }
   if(curLesson) closeLesson(); else showScreen('home');
 };
@@ -2150,14 +2250,8 @@ $('#lesson-close').onclick = ()=>{
 function init(){
   loadState();
   renderNav();
-  if(!state.hasProfile){
-    showAuth('create');
-    return;
-  }
-  if(!state.sessionActive){
-    showAuth('login');
-    return;
-  }
+  if(!state.hasProfile){ showAuth('create'); return; }
+  if(!state.sessionActive){ showAuth('login'); return; }
   touchStreak();
   checkAchievements();
   saveState();
@@ -2166,4 +2260,4 @@ function init(){
 init();
 </script>
 </body>
-  </html>
+                                                                                                                                                                                                           </html>
