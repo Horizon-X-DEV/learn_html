@@ -53,7 +53,6 @@ code,pre,.mono{font-family:'JetBrains Mono','Fira Code',ui-monospace,Menlo,Conso
 .stat-top svg{width:14px;height:14px}
 .stat-val{font-size:17px;font-weight:700}
 
-/* COURSE CARD dengan efek stack */
 .course-card-wrap{position:relative;padding-top:22px;margin-bottom:26px}
 .course-card-wrap::before,
 .course-card-wrap::after{content:'';position:absolute;height:46px;border:1px solid var(--line);border-bottom:none;border-radius:var(--radius-lg) var(--radius-lg) 0 0;pointer-events:none}
@@ -73,7 +72,6 @@ code,pre,.mono{font-family:'JetBrains Mono','Fira Code',ui-monospace,Menlo,Conso
 .section-head{display:flex;align-items:center;gap:10px;margin:28px 0 8px;font-size:13.5px;font-weight:700;color:var(--text3);letter-spacing:.2px;text-transform:uppercase}
 .section-head::after{content:'';flex:1;height:1px;background:var(--line)}
 
-/* LEARNING PATH zigzag */
 .path{position:relative;display:block;padding:16px 0 8px;background-image:radial-gradient(circle, rgba(139,92,246,.16) 1.3px, transparent 1.4px);background-size:22px 22px;background-position:0 0}
 .path-svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
 .path-node{position:absolute;display:flex;align-items:center;gap:12px;padding:0 15px;border-radius:var(--radius-md);border:2px solid transparent;background:var(--surface);text-align:left;color:var(--text);box-sizing:border-box;font:inherit;cursor:pointer;transition:transform .18s,border-color .18s}
@@ -85,26 +83,22 @@ code,pre,.mono{font-family:'JetBrains Mono','Fira Code',ui-monospace,Menlo,Conso
 .path-node .node-title{font-size:13.5px;font-weight:600;line-height:1.3;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .path-node .node-sub{font-size:11px;color:var(--text2);margin:3px 0 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
-/* DONE node — flat solid, satu warna konsisten */
 .path-node.done{background:var(--primary);border-color:var(--primary);color:#fff}
 .path-node.done .node-icon{background:rgba(0,0,0,.18);color:#fff}
 .path-node.done .node-title{color:#fff}
 .path-node.done .node-sub{color:rgba(255,255,255,.85)}
 
-/* ACTIVE node — cincin outline + tint */
 .path-node.active{background:rgba(139,92,246,.14);border-color:var(--primary);box-shadow:0 0 0 3px rgba(139,92,246,.18);animation:nodeEntrance .5s cubic-bezier(.34,1.56,.64,1)}
 @keyframes nodeEntrance{0%{transform:scale(.93);opacity:.5}100%{transform:scale(1);opacity:1}}
 .path-node.active .node-icon{background:var(--primary);color:#fff}
 .path-node.active .node-title{color:var(--text)}
 .path-node.active .node-sub{color:#c4b5fd}
 
-/* LOCKED node */
 .path-node.locked{background:rgba(24,26,54,.75);border-color:rgba(58,63,117,.45);opacity:.45}
 .path-node.locked .node-icon{background:rgba(31,33,66,.9);color:rgba(155,157,196,.55)}
 .path-node.locked .node-title{color:rgba(155,157,196,.85)}
 .path-node.locked .node-sub{color:rgba(155,157,196,.55)}
 
-/* LESSON */
 .lesson-head{position:sticky;top:0;z-index:30;background:rgba(20,21,43,.94);backdrop-filter:blur(12px);padding:14px 0 10px;border-bottom:1px solid var(--line);margin-bottom:18px}
 .lesson-head-row{display:flex;align-items:center;gap:12px}
 .icon-btn{width:38px;height:38px;border-radius:var(--radius-md);display:grid;place-items:center;background:var(--surface2);color:var(--text2);flex-shrink:0;transition:background .15s,color .15s}
@@ -232,7 +226,6 @@ code,pre,.mono{font-family:'JetBrains Mono','Fira Code',ui-monospace,Menlo,Conso
 .page-title{font-size:23px;font-weight:700;margin:0 0 4px;letter-spacing:-.4px}
 .page-sub{font-size:13px;color:var(--text2);margin:0 0 18px}
 
-/* LATIHAN NEW SECTIONS */
 .practice-section{margin-bottom:20px}
 .link-btn{background:none;color:var(--primary);font-size:11px;font-weight:600;padding:2px 0;text-transform:none;letter-spacing:0}
 .link-btn:hover{text-decoration:underline}
@@ -278,20 +271,19 @@ code,pre,.mono{font-family:'JetBrains Mono','Fira Code',ui-monospace,Menlo,Conso
 .analyze-code{background:#0f1024;border:1px solid var(--line);border-radius:var(--radius-md);padding:14px;overflow-x:auto;margin-bottom:14px}
 .analyze-code pre{margin:0;font-size:13px;line-height:1.7;white-space:pre;font-family:'JetBrains Mono','Fira Code',monospace}
 
-/* PROJECTS */
 .proj-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);padding:17px;margin-bottom:14px}
 .proj-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:8px}
 .proj-name{font-size:15.5px;font-weight:700;margin:0}
 .proj-desc{font-size:13px;color:var(--text2);margin:0 0 10px;line-height:1.55}
 .proj-task{background:rgba(77,184,255,.07);border-left:3px solid var(--info);padding:10px 12px;border-radius:var(--radius-sm);font-size:12.5px;color:var(--text3);margin-bottom:12px;line-height:1.55}
 .proj-task b{color:#7dd3fc;font-weight:600}
-.check-item{display:flex;align-items:center;gap:10px;padding:8px 0;font-size:13px;color:var(--text2)}
+.check-item{display:flex;align-items:center;gap:10px;padding:8px 0;font-size:13px;color:var(--text2);flex-wrap:wrap}
+.check-item code{background:var(--surface2);padding:1px 7px;border-radius:5px;font-size:12px;color:#c4b5fd;font-family:'JetBrains Mono','Fira Code',monospace}
 .check-box{width:20px;height:20px;border-radius:6px;border:2px solid var(--line);display:grid;place-items:center;flex-shrink:0;transition:all .2s}
 .check-box.on{background:var(--success);border-color:var(--success);color:#0b2b21}
 .check-box svg{width:13px;height:13px}
 .check-item.on{color:var(--text)}
 
-/* PROFILE */
 .profile-photo-wrap{position:relative;width:110px;height:110px;margin:6px auto 14px}
 .profile-photo{width:110px;height:110px;border-radius:50%;background:var(--surface2);display:grid;place-items:center;overflow:hidden;cursor:pointer;border:3px solid var(--surface);transition:border-color .15s}
 .profile-photo:hover{border-color:var(--primary)}
@@ -327,7 +319,6 @@ code,pre,.mono{font-family:'JetBrains Mono','Fira Code',ui-monospace,Menlo,Conso
 .stat-box .lbl{font-size:11.5px;color:var(--text2);margin-bottom:4px}
 .stat-box .val{font-size:19px;font-weight:700}
 
-/* BADGE GRID */
 .badge-grid{display:grid;grid-template-columns:repeat(2,1fr);grid-auto-flow:row;grid-auto-rows:auto;gap:10px;contain:layout paint style;isolation:isolate;position:relative}
 .badge{position:relative;grid-column:auto;grid-row:auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-md);padding:13px;text-align:center;opacity:.42;transition:opacity .2s,border-color .2s;transform:translateZ(0);backface-visibility:hidden}
 .badge.on{opacity:1;border-color:rgba(139,92,246,.5)}
@@ -337,7 +328,6 @@ code,pre,.mono{font-family:'JetBrains Mono','Fira Code',ui-monospace,Menlo,Conso
 .badge-name{font-size:12px;font-weight:600;margin:0 0 2px}
 .badge-desc{font-size:10.5px;color:var(--text2);margin:0;line-height:1.4}
 
-/* AUTH */
 .auth-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px 20px}
 .auth-card{width:100%;max-width:380px}
 .auth-logo{width:64px;height:64px;border-radius:var(--radius-lg);margin:0 auto 18px;display:grid;place-items:center;background:var(--primary);box-shadow:var(--shadow-pop)}
@@ -650,7 +640,7 @@ const CONFIG = {
     { min: 700, name: 'HTML Builder' }
   ],
   SECTIONS: ['HTML Fundamentals','Text & Formatting','Links & Images','Lists & Tables','Forms','Semantic HTML','Mini Projects'],
-  LS_KEY: 'tagquest_state_v6',
+  LS_KEY: 'tagquest_state_v7',
   SEC_PER_STEP: 30
 };
 
@@ -984,67 +974,69 @@ const LESSONS = [
 { id:'s7l7', section:'Mini Projects', title:'Portfolio Sederhana', steps:[{ t:'card', v:'def', b:'// TODO: isi konten.' }] }
 ];
 
+/* PROJECTS — label pakai tag mentah, di-render via appendReqLabel */
 const PROJECTS = [
   { id:'p1', name:'Biodata HTML', desc:'Buat halaman biodata dirimu.', task:'Tugas: buat halaman HTML lengkap dengan <b>&lt;h1&gt;</b>, <b>&lt;p&gt;</b>, <b>&lt;ul&gt;</b> berisi 3 <b>&lt;li&gt;</b>, dan satu <b>&lt;strong&gt;</b>.',
     starter:'<!DOCTYPE html>\n<html>\n<body>\n  \n</body>\n</html>',
     reqs:[
-      { label:'Ada <h1>', test:c=>/<h1[\s>]/i.test(c) },
-      { label:'Ada <p>', test:c=>/<p[\s>]/i.test(c) },
-      { label:'Ada <ul> dengan minimal 3 <li>', test:c=>{const u=c.match(/<ul[\s>][\s\S]*?<\/ul>/i);return u && (u[0].match(/<li[\s>]/gi)||[]).length>=3;} },
-      { label:'Ada <strong> atau <b>', test:c=>/<(strong|b)[\s>]/i.test(c) },
+      { label:'Ada tag <h1>', test:c=>/<h1[\s>]/i.test(c) },
+      { label:'Ada tag <p>', test:c=>/<p[\s>]/i.test(c) },
+      { label:'Ada tag <ul> dengan minimal 3 <li>', test:c=>{const u=c.match(/<ul[\s>][\s\S]*?<\/ul>/i);return u && (u[0].match(/<li[\s>]/gi)||[]).length>=3;} },
+      { label:'Ada tag <strong> atau <b>', test:c=>/<(strong|b)[\s>]/i.test(c) },
       { label:'Tag tertutup dengan benar', test:c=>{const o=(c.match(/<(?!\/|!|br|hr|img|input|meta|link)[a-z][a-z0-9]*/gi)||[]).length;const cl=(c.match(/<\//g)||[]).length;return cl>=o-1;} }
     ] },
   { id:'p2', name:'Halaman Profil', desc:'Buat halaman profil dengan foto dan link kontak.',
     task:'Tugas: buat <b>&lt;h1&gt;</b>, <b>&lt;img&gt;</b> dengan <b>alt</b>, <b>&lt;p&gt;</b>, <b>&lt;a href&gt;</b>, dan <b>&lt;hr&gt;</b>.',
     starter:'<!DOCTYPE html>\n<html>\n<body>\n  \n</body>\n</html>',
     reqs:[
-      { label:'Ada <h1>', test:c=>/<h1[\s>]/i.test(c) },
-      { label:'Ada <img> dengan alt', test:c=>/<img[^>]*alt\s*=/i.test(c) },
-      { label:'Ada <p>', test:c=>/<p[\s>]/i.test(c) },
-      { label:'Ada <a href>', test:c=>/<a[^>]*href\s*=/i.test(c) },
-      { label:'Ada <hr>', test:c=>/<hr[\s>\/]/i.test(c) }
+      { label:'Ada tag <h1>', test:c=>/<h1[\s>]/i.test(c) },
+      { label:'Ada tag <img> dengan alt', test:c=>/<img[^>]*alt\s*=/i.test(c) },
+      { label:'Ada tag <p>', test:c=>/<p[\s>]/i.test(c) },
+      { label:'Ada tag <a> dengan href', test:c=>/<a[^>]*href\s*=/i.test(c) },
+      { label:'Ada tag <hr>', test:c=>/<hr[\s>\/]/i.test(c) }
     ] },
   { id:'p3', name:'Daftar Game Favorit', desc:'Buat halaman daftar game favorit.',
     task:'Tugas: buat <b>&lt;h1&gt;</b>, <b>&lt;p&gt;</b>, dan <b>&lt;ol&gt;</b> dengan minimal 3 <b>&lt;li&gt;</b>. Bungkus salah satu nama game dengan <b>&lt;strong&gt;</b>.',
     starter:'<!DOCTYPE html>\n<html>\n<body>\n  <h1>Game Favoritku</h1>\n  <p>Ini daftar game favoritku.</p>\n  <ol>\n    \n  </ol>\n</body>\n</html>',
     reqs:[
-      { label:'Ada <h1>', test:c=>/<h1[\s>]/i.test(c) },
-      { label:'Ada <p>', test:c=>/<p[\s>]/i.test(c) },
-      { label:'Ada <ol> dengan 3+ <li>', test:c=>{const o=c.match(/<ol[\s>][\s\S]*?<\/ol>/i);return o && (o[0].match(/<li[\s>]/gi)||[]).length>=3;} },
-      { label:'Ada <strong> atau <b>', test:c=>/<(strong|b)[\s>]/i.test(c) }
+      { label:'Ada tag <h1>', test:c=>/<h1[\s>]/i.test(c) },
+      { label:'Ada tag <p>', test:c=>/<p[\s>]/i.test(c) },
+      { label:'Ada tag <ol> dengan minimal 3 <li>', test:c=>{const o=c.match(/<ol[\s>][\s\S]*?<\/ol>/i);return o && (o[0].match(/<li[\s>]/gi)||[]).length>=3;} },
+      { label:'Ada tag <strong> atau <b>', test:c=>/<(strong|b)[\s>]/i.test(c) },
+      { label:'Tag tertutup dengan benar', test:c=>{const o=(c.match(/<(?!\/|!|br|hr|img|input|meta|link)[a-z][a-z0-9]*/gi)||[]).length;const cl=(c.match(/<\//g)||[]).length;return cl>=o-1;} }
     ] },
   { id:'p4', name:'Halaman Artikel', desc:'Buat halaman artikel dengan judul dan sub-judul.',
     task:'Tugas: buat <b>&lt;h1&gt;</b>, <b>&lt;h2&gt;</b>, minimal 2 <b>&lt;p&gt;</b>, <b>&lt;em&gt;</b>, <b>&lt;strong&gt;</b>, dan <b>&lt;hr&gt;</b>.',
     starter:'<!DOCTYPE html>\n<html>\n<body>\n  <h1>Judul Artikel</h1>\n  <hr>\n  \n</body>\n</html>',
     reqs:[
-      { label:'Ada <h1>', test:c=>/<h1[\s>]/i.test(c) },
-      { label:'Ada <h2>', test:c=>/<h2[\s>]/i.test(c) },
-      { label:'Ada 2+ <p>', test:c=>(c.match(/<p[\s>]/gi)||[]).length>=2 },
-      { label:'Ada <em> atau <i>', test:c=>/<(em|i)[\s>]/i.test(c) },
-      { label:'Ada <strong> atau <b>', test:c=>/<(strong|b)[\s>]/i.test(c) },
-      { label:'Ada <hr>', test:c=>/<hr[\s>\/]/i.test(c) }
+      { label:'Ada tag <h1>', test:c=>/<h1[\s>]/i.test(c) },
+      { label:'Ada tag <h2>', test:c=>/<h2[\s>]/i.test(c) },
+      { label:'Ada minimal 2 tag <p>', test:c=>(c.match(/<p[\s>]/gi)||[]).length>=2 },
+      { label:'Ada tag <em> atau <i>', test:c=>/<(em|i)[\s>]/i.test(c) },
+      { label:'Ada tag <strong> atau <b>', test:c=>/<(strong|b)[\s>]/i.test(c) },
+      { label:'Ada tag <hr>', test:c=>/<hr[\s>\/]/i.test(c) }
     ] },
   { id:'p5', name:'Form Pendaftaran', desc:'Buat form pendaftaran dengan input nama, email, password.',
     task:'Tugas: buat <b>&lt;form&gt;</b> dengan 2+ <b>&lt;label&gt;</b>, input text, email, password, dan <b>&lt;button&gt;</b>.',
     starter:'<!DOCTYPE html>\n<html>\n<body>\n  <h1>Form Pendaftaran</h1>\n  <form>\n    \n  </form>\n</body>\n</html>',
     reqs:[
-      { label:'Ada <form>', test:c=>/<form[\s>]/i.test(c) },
-      { label:'Ada input text', test:c=>/<input[^>]*type\s*=\s*["']?text/i.test(c) || /<input(?![^>]*type\s*=)[^>]*>/i.test(c) },
-      { label:'Ada input email', test:c=>/<input[^>]*type\s*=\s*["']?email/i.test(c) },
-      { label:'Ada input password', test:c=>/<input[^>]*type\s*=\s*["']?password/i.test(c) },
-      { label:'Ada button/submit', test:c=>/<button[\s>]/i.test(c) || /<input[^>]*type\s*=\s*["']?submit/i.test(c) },
-      { label:'Ada 2+ label', test:c=>(c.match(/<label[\s>]/gi)||[]).length>=2 }
+      { label:'Ada tag <form>', test:c=>/<form[\s>]/i.test(c) },
+      { label:'Ada <input type="text">', test:c=>/<input[^>]*type\s*=\s*["']?text/i.test(c) || /<input(?![^>]*type\s*=)[^>]*>/i.test(c) },
+      { label:'Ada <input type="email">', test:c=>/<input[^>]*type\s*=\s*["']?email/i.test(c) },
+      { label:'Ada <input type="password">', test:c=>/<input[^>]*type\s*=\s*["']?password/i.test(c) },
+      { label:'Ada tag <button> atau <input type="submit">', test:c=>/<button[\s>]/i.test(c) || /<input[^>]*type\s*=\s*["']?submit/i.test(c) },
+      { label:'Ada minimal 2 tag <label>', test:c=>(c.match(/<label[\s>]/gi)||[]).length>=2 }
     ] },
   { id:'p6', name:'Portfolio Sederhana', desc:'Buat halaman portfolio dengan foto dan skill.',
     task:'Tugas: buat <b>&lt;h1&gt;</b>, <b>&lt;img alt="..."&gt;</b> dengan alt tidak kosong, <b>&lt;p&gt;</b>, <b>&lt;ul&gt;</b> 3+ <b>&lt;li&gt;</b>, <b>&lt;a href&gt;</b>, dan <b>&lt;hr&gt;</b>.',
     starter:'<!DOCTYPE html>\n<html>\n<body>\n  <h1>Nama Kamu</h1>\n  <img src="" alt="">\n  <hr>\n  \n</body>\n</html>',
     reqs:[
-      { label:'Ada <h1>', test:c=>/<h1[\s>]/i.test(c) },
-      { label:'Ada <img> dengan alt terisi', test:c=>/<img[^>]*alt\s*=\s*["'][^"']+["']/i.test(c) },
-      { label:'Ada <p>', test:c=>/<p[\s>]/i.test(c) },
-      { label:'Ada <ul> dengan 3+ <li>', test:c=>{const u=c.match(/<ul[\s>][\s\S]*?<\/ul>/i);return u && (u[0].match(/<li[\s>]/gi)||[]).length>=3;} },
-      { label:'Ada <a href>', test:c=>/<a[^>]*href\s*=\s*["'][^"']+["']/i.test(c) },
-      { label:'Ada <hr>', test:c=>/<hr[\s>\/]/i.test(c) }
+      { label:'Ada tag <h1>', test:c=>/<h1[\s>]/i.test(c) },
+      { label:'Ada tag <img> dengan alt terisi', test:c=>/<img[^>]*alt\s*=\s*["'][^"']+["']/i.test(c) },
+      { label:'Ada tag <p>', test:c=>/<p[\s>]/i.test(c) },
+      { label:'Ada tag <ul> dengan minimal 3 <li>', test:c=>{const u=c.match(/<ul[\s>][\s\S]*?<\/ul>/i);return u && (u[0].match(/<li[\s>]/gi)||[]).length>=3;} },
+      { label:'Ada tag <a> dengan href', test:c=>/<a[^>]*href\s*=\s*["'][^"']+["']/i.test(c) },
+      { label:'Ada tag <hr>', test:c=>/<hr[\s>\/]/i.test(c) }
     ] }
 ];
 
@@ -1062,7 +1054,7 @@ const ACHIEVEMENTS = [
 ];
 
 const DEFAULT_STATE = {
-  version: 6,
+  version: 7,
   completed:{}, current:null, xp:0, streak:0, lastActive:null,
   achievements:[], projects:{}, checkpoints:{},
   hardMode:{}, seenTip:{},
@@ -1101,6 +1093,27 @@ const $  = s => document.querySelector(s);
 const $$ = s => Array.from(document.querySelectorAll(s));
 function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 function escAttr(s){ return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+/* ============================================================
+   appendReqLabel — render label checklist dengan aman.
+   Tag seperti <h1> dibungkus <code> via textContent (bukan innerHTML),
+   jadi tidak akan pernah di-parse sebagai elemen HTML asli.
+   ============================================================ */
+function appendReqLabel(container, label){
+  const str = String(label);
+  // Pisah berdasarkan pola tag HTML: <h1>, </h1>, <img>, <br/>, dsb.
+  const parts = str.split(/(<\/?[a-zA-Z][a-zA-Z0-9]*\s*\/?>)/g);
+  parts.forEach(p => {
+    if(!p) return;
+    if(/^<\/?[a-zA-Z][a-zA-Z0-9]*\s*\/?>$/.test(p)){
+      const code = document.createElement('code');
+      code.textContent = p;
+      container.appendChild(code);
+    } else {
+      container.appendChild(document.createTextNode(p));
+    }
+  });
+}
 
 function colorTag(tag){
   const m = tag.match(/^<(\/?)([a-zA-Z][a-zA-Z0-9-]*)([\s\S]*?)(\/?)>$/);
@@ -1193,7 +1206,6 @@ function getDailyReviewLesson(){
 function isDone(id){ return !!state.completed[id]; }
 function activeLessonId(){ for(const l of LESSONS){ if(!isDone(l.id)) return l.id; } return null; }
 
-/* TIMER */
 let sessionTimer = null;
 let currentScreen = null;
 function startSessionTimer(){ if(sessionTimer) return; sessionTimer = Date.now(); }
@@ -1211,7 +1223,6 @@ function bumpActivityCount(){
   saveState();
 }
 
-/* MASKOT */
 const MASCOT_MSGS = ['Keren!','Mantap, lanjut!','Kamu makin jago!','Wih, bener!','Hebat!','Nah, gitu dong!','Tepat sekali!','Yes, mantap!','Keren banget!','Sip, terus!','Luar biasa!','Nice, lanjut ya!'];
 let mascotCb = null;
 function mascotSvg(size){
@@ -1236,7 +1247,6 @@ function showMascot(cb){
 function hideMascot(){ $('#mascot').classList.remove('show'); mascotCb = null; }
 $('#mascot-continue').onclick = ()=>{ const cb = mascotCb; hideMascot(); if(cb) cb(); };
 
-/* NAV */
 const NAV_ITEMS = [
   { id:'home',     label:'Belajar', icon:'<path d="M4 19.5V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v13.5"/><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20V19.5"/>' },
   { id:'practice', label:'Latihan', icon:'<path d="M13 2 3 14h8l-1 8 10-12h-8l1-8z"/>' },
@@ -1280,7 +1290,6 @@ function showScreen(id){
   if(id === 'profile') renderProfile();
 }
 
-/* AUTH */
 function showAuth(mode){
   currentScreen = 'auth';
   ['home','lesson','practice','projects','profile'].forEach(s=>{
@@ -1337,7 +1346,6 @@ $('#login-submit').onclick = ()=>{
 $('#login-pin').addEventListener('input', e=>{ e.target.value = e.target.value.replace(/\D/g,'').slice(0,4); });
 $('#login-pin').addEventListener('keydown', e=>{ if(e.key === 'Enter') $('#login-submit').click(); });
 
-/* HOME */
 function renderHome(){
   touchStreak();
   const total = LESSONS.length;
@@ -1435,7 +1443,6 @@ function renderHome(){
   });
 }
 
-/* SHEET */
 let sheetSection = null;
 function openUnitSheet(section){
   sheetSection = section;
@@ -1480,7 +1487,6 @@ $('#hard-switch').onclick = ()=>{
   toast(state.hardMode[sheetSection] ? 'Mode Sulit aktif untuk unit ini' : 'Mode Sulit nonaktif');
 };
 
-/* LESSON */
 let curLesson = null, curStep = 0;
 const CARD_META = {
   def:  { label:'Definisi', icon:'<path d="M4 19.5V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v13.5"/><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>' },
@@ -1605,7 +1611,6 @@ function finishLesson(){
   };
 }
 
-/* EXERCISE */
 function buildExpected(step){
   if(step.k === 'arrange' || step.k === 'fill'){
     const parts = step.tpl.split('___');
@@ -1890,7 +1895,6 @@ function makeEditor(initial, title){
   return { el, getValue: ()=>ta.value, setValue: v=>{ ta.value = v; sync(); } };
 }
 
-/* PRACTICE */
 const PRACTICE_CATS = [
   { id:'basics', name:'HTML Basics', sections:['HTML Fundamentals'], icon:'<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>' },
   { id:'text',   name:'Text & Formatting', sections:['Text & Formatting'], icon:'<path d="M4 7V4h16v3M9 20h6M12 4v16"/>' },
@@ -1905,7 +1909,6 @@ function renderPractice(){
   const box = $('#practice-list');
   box.innerHTML = '';
 
-  /* 1. Pengulangan Harian */
   const daily = getDailyReviewLesson();
   if(daily){
     const dur = estimateDurationSec(daily);
@@ -1933,7 +1936,6 @@ function renderPractice(){
     box.appendChild(empty);
   }
 
-  /* 2. Latih topik sebelumnya */
   const completed = getCompletedLessons();
   if(completed.length){
     const sec = document.createElement('div');
@@ -1956,7 +1958,6 @@ function renderPractice(){
     sec.querySelector('#see-all-topics').onclick = showAllTopicsModal;
   }
 
-  /* 3. Progres latihanmu — pakai SVG outline icons */
   const progSec = document.createElement('div');
   progSec.className = 'practice-section';
   progSec.innerHTML =
@@ -1989,7 +1990,6 @@ function renderPractice(){
     '</div></div>';
   box.appendChild(progSec);
 
-  /* 4. Latihan per kategori */
   const catLabel = document.createElement('div');
   catLabel.className = 'section-label';
   catLabel.innerHTML = '<span>Latihan per kategori</span>';
@@ -2088,7 +2088,9 @@ function renderPracticeQuestion(){
   curLesson = savedLesson;
 }
 
-/* PROJECTS */
+/* ============================================================
+   PROJECTS — checklist label dirender via appendReqLabel (aman)
+   ============================================================ */
 function renderProjects(){
   const box = $('#projects-list'); box.innerHTML = '';
   PROJECTS.forEach(p=>{
@@ -2096,8 +2098,8 @@ function renderProjects(){
     card.className = 'proj-card';
     const done = !!state.projects[p.id];
     card.innerHTML =
-      '<div class="proj-head"><h3 class="proj-name">'+p.name+(done?' ✓':'')+'</h3>'+(done ? '<span class="course-pill" style="background:rgba(52,211,153,.18);color:#6ee7b7">Selesai</span>' : '')+'</div>' +
-      '<p class="proj-desc">'+p.desc+'</p>' +
+      '<div class="proj-head"><h3 class="proj-name">'+esc(p.name)+(done?' ✓':'')+'</h3>'+(done ? '<span class="course-pill" style="background:rgba(52,211,153,.18);color:#6ee7b7">Selesai</span>' : '')+'</div>' +
+      '<p class="proj-desc">'+esc(p.desc)+'</p>' +
       '<div class="proj-task">'+p.task+'</div>' +
       '<div class="checklist" id="chk-'+p.id+'"></div>' +
       '<div class="split" style="margin-top:12px">' +
@@ -2122,7 +2124,15 @@ function renderProjects(){
         const on = r.test(code);
         const row = document.createElement('div');
         row.className = 'check-item' + (on?' on':'');
-        row.innerHTML = '<div class="check-box'+(on?' on':'')+'">'+(on?'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>':'')+'</div><span>'+r.label+'</span>';
+        // checkbox (innerHTML aman — hanya SVG statis)
+        const box = document.createElement('div');
+        box.className = 'check-box' + (on?' on':'');
+        box.innerHTML = on ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>' : '';
+        row.appendChild(box);
+        // label (AMAN: pakai textContent / createTextNode via appendReqLabel)
+        const lbl = document.createElement('span');
+        appendReqLabel(lbl, r.label);
+        row.appendChild(lbl);
         list.appendChild(row);
       });
     }
@@ -2146,7 +2156,6 @@ function renderProjects(){
   });
 }
 
-/* PROFILE */
 function renderProfile(){
   const lv = getLevel(state.xp);
   const done = Object.keys(state.completed).length;
@@ -2193,7 +2202,7 @@ function renderProfile(){
     d.className = 'badge' + (on ? ' on' : '');
     d.dataset.badgeId = a.id;
     d.dataset.badgeIdx = idx;
-    d.innerHTML = '<div class="badge-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">'+(ICONS[a.icon]||ICONS.star)+'</svg></div><p class="badge-name">'+a.name+'</p><p class="badge-desc">'+a.desc+'</p>';
+    d.innerHTML = '<div class="badge-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">'+(ICONS[a.icon]||ICONS.star)+'</svg></div><p class="badge-name">'+esc(a.name)+'</p><p class="badge-desc">'+esc(a.desc)+'</p>';
     grid.appendChild(d);
   });
 }
@@ -2295,7 +2304,6 @@ $('#logout-btn').onclick = ()=>{
   });
 };
 
-/* MODAL & RESET */
 let modalCb = null;
 function showModal(title, body, okText, cb){
   $('#modal-title').textContent = title;
@@ -2351,4 +2359,4 @@ function init(){
 init();
 </script>
 </body>
-      </html>
+  </html>
