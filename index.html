@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>TagQuest — Belajar HTML Interaktif</title>
+<title>learn_HTML</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -82,18 +82,15 @@ code,pre,.mono{font-family:'JetBrains Mono','Fira Code',ui-monospace,Menlo,Conso
 .path-node .node-text{flex:1;min-width:0}
 .path-node .node-title{font-size:13.5px;font-weight:600;line-height:1.3;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .path-node .node-sub{font-size:11px;color:var(--text2);margin:3px 0 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-
 .path-node.done{background:var(--primary);border-color:var(--primary);color:#fff}
 .path-node.done .node-icon{background:rgba(0,0,0,.18);color:#fff}
 .path-node.done .node-title{color:#fff}
 .path-node.done .node-sub{color:rgba(255,255,255,.85)}
-
 .path-node.active{background:rgba(139,92,246,.14);border-color:var(--primary);box-shadow:0 0 0 3px rgba(139,92,246,.18);animation:nodeEntrance .5s cubic-bezier(.34,1.56,.64,1)}
 @keyframes nodeEntrance{0%{transform:scale(.93);opacity:.5}100%{transform:scale(1);opacity:1}}
 .path-node.active .node-icon{background:var(--primary);color:#fff}
 .path-node.active .node-title{color:var(--text)}
 .path-node.active .node-sub{color:#c4b5fd}
-
 .path-node.locked{background:rgba(24,26,54,.75);border-color:rgba(58,63,117,.45);opacity:.45}
 .path-node.locked .node-icon{background:rgba(31,33,66,.9);color:rgba(155,157,196,.55)}
 .path-node.locked .node-title{color:rgba(155,157,196,.85)}
@@ -110,6 +107,7 @@ code,pre,.mono{font-family:'JetBrains Mono','Fira Code',ui-monospace,Menlo,Conso
 @keyframes fadeUp{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:none}}
 .lesson-eyebrow{font-size:11.5px;font-weight:600;color:var(--primary);letter-spacing:.5px;text-transform:uppercase;margin:0 0 6px}
 
+/* ===== KARTU PENJELASAN/CONTOH ===== */
 .concept-card{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);padding:18px 18px 18px 22px;margin-bottom:16px;overflow:hidden;animation:fadeUp .35s ease}
 .concept-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px}
 .card-def::before{background:var(--primary)}
@@ -124,13 +122,87 @@ code,pre,.mono{font-family:'JetBrains Mono','Fira Code',ui-monospace,Menlo,Conso
 .card-warn .card-ico{color:#fcd34d}
 .card-ico svg{width:17px;height:17px}
 .card-label{font-size:11px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--text2)}
-.card-body{font-size:14.5px;line-height:1.65;color:var(--text3);margin:0}
-.card-body b{color:var(--text);font-weight:600}
-.card-body code{background:var(--surface2);padding:2px 6px;border-radius:6px;font-size:12.5px;color:#c4b5fd;font-family:'JetBrains Mono','Fira Code',monospace}
+
+/* Paragraf penjelasan — alur teks normal */
+.card-body{
+  display:block;
+  font-size:14.5px;
+  line-height:1.7;
+  color:var(--text3);
+  margin:0;
+}
+.card-body b,
+.card-body strong{
+  font-size:inherit;
+  font-weight:600;
+  color:var(--text);
+}
+.card-body i,
+.card-body em{
+  font-size:inherit;
+  font-style:italic;
+}
+
+/* List poin — block flow, bukan flex */
+.card-notes{
+  display:block;
+  margin:14px 0 0;
+  padding:0;
+  list-style:none;
+}
+.card-notes li{
+  display:block;
+  position:relative;
+  font-size:14px;
+  line-height:1.75;
+  color:var(--text3);
+  margin:0 0 10px;
+  padding-left:16px;
+}
+.card-notes li:last-child{margin-bottom:0}
+.card-notes li::before{
+  content:'';
+  position:absolute;
+  left:0;
+  top:12px;
+  width:5px;
+  height:5px;
+  border-radius:50%;
+  background:var(--success);
+  flex-shrink:0;
+}
+.card-notes li b,
+.card-notes li strong{
+  font-size:inherit;
+  font-weight:600;
+  color:var(--text);
+}
+.card-notes li i,
+.card-notes li em{
+  font-size:inherit;
+  font-style:italic;
+}
+
+/* Chip inline code untuk nama tag */
+.card-body code,
+.card-notes code,
+.code-pane code,
+.chip-inline{
+  display:inline-block;
+  background:rgba(139,92,246,.18);
+  color:#c4b5fd;
+  padding:1px 7px;
+  border-radius:6px;
+  font-family:'JetBrains Mono','Fira Code',ui-monospace,monospace;
+  font-size:12.5px;
+  line-height:1.5;
+  white-space:nowrap;
+  font-weight:500;
+  vertical-align:baseline;
+  border:1px solid rgba(139,92,246,.22);
+}
+
 .card-code{background:#0f1024;border:1px solid var(--line);border-radius:var(--radius-md);padding:12px 14px;margin:12px 0;font-size:13px;line-height:1.7;overflow-x:auto;white-space:pre;font-family:'JetBrains Mono','Fira Code',monospace}
-.card-notes{margin:12px 0 0;padding:0;list-style:none}
-.card-notes li{display:flex;gap:9px;font-size:13.5px;color:var(--text3);margin-bottom:7px;line-height:1.5}
-.card-notes li::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--success);margin-top:8px;flex-shrink:0}
 
 .elem-diagram{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);padding:22px 16px 16px;margin:0 0 16px;text-align:center;overflow-x:auto}
 .elem-labels{display:flex;justify-content:space-between;font-size:10.5px;color:var(--text2);padding:0 4px;margin-bottom:5px;min-width:260px}
@@ -198,6 +270,7 @@ code,pre,.mono{font-family:'JetBrains Mono','Fira Code',ui-monospace,Menlo,Conso
 .feedback.hint{background:rgba(251,191,36,.11);border:1px solid rgba(251,191,36,.3);color:#fde68a}
 .feedback svg{width:18px;height:18px;flex-shrink:0;margin-top:1px}
 .feedback b{color:#fff}
+.feedback code{background:rgba(0,0,0,.25);padding:2px 7px;border-radius:5px;font-size:12.5px;font-family:'JetBrains Mono','Fira Code',monospace}
 
 .first-tip{display:flex;align-items:center;gap:9px;background:rgba(77,184,255,.1);border:1px solid rgba(77,184,255,.3);color:#bae6fd;padding:10px 13px;border-radius:var(--radius-md);font-size:12.5px;margin-bottom:12px;animation:fadeUp .3s}
 .first-tip svg{width:15px;height:15px;flex-shrink:0}
@@ -283,6 +356,14 @@ code,pre,.mono{font-family:'JetBrains Mono','Fira Code',ui-monospace,Menlo,Conso
 .check-box.on{background:var(--success);border-color:var(--success);color:#0b2b21}
 .check-box svg{width:13px;height:13px}
 .check-item.on{color:var(--text)}
+
+.glossary-search{width:100%;padding:12px 14px;border-radius:var(--radius-md);background:var(--surface2);border:1.5px solid var(--line);color:var(--text);font-size:14px;font-family:inherit;margin-bottom:14px;transition:border-color .15s}
+.glossary-search:focus{outline:none;border-color:var(--primary)}
+.glossary-search::placeholder{color:var(--text2)}
+.glossary-item{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-md);padding:14px;margin-bottom:10px}
+.glossary-term{font-size:14.5px;font-weight:700;margin:0 0 6px;color:#c4b5fd}
+.glossary-def{font-size:13.5px;color:var(--text3);margin:0;line-height:1.6}
+.glossary-meta{font-size:11px;color:var(--text2);margin-top:6px}
 
 .profile-photo-wrap{position:relative;width:110px;height:110px;margin:6px auto 14px}
 .profile-photo{width:110px;height:110px;border-radius:50%;background:var(--surface2);display:grid;place-items:center;overflow:hidden;cursor:pointer;border:3px solid var(--surface);transition:border-color .15s}
@@ -467,7 +548,7 @@ textarea.modal-input{resize:vertical;min-height:80px;max-height:140px;line-heigh
           <div class="lesson-head-row">
             <button class="icon-btn" id="lesson-close" aria-label="Keluar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
             <div class="lesson-prog"><div class="lesson-prog-fill" id="lesson-prog" style="width:0%"></div></div>
-            <div class="icon-btn" style="color:#c4b5fd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+            <button class="icon-btn" id="lesson-glossary" aria-label="Glosarium"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v13.5"/><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/></svg></button>
           </div>
         </div>
         <div class="lesson-body" id="lesson-content"></div>
@@ -483,12 +564,22 @@ textarea.modal-input{resize:vertical;min-height:80px;max-height:140px;line-heigh
         <div id="projects-list"></div>
       </section>
 
+      <section id="screen-glossary" class="hidden">
+        <div class="lesson-head">
+          <div class="lesson-head-row">
+            <button class="icon-btn" id="glossary-back" aria-label="Kembali"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+            <div style="flex:1;font-size:15px;font-weight:700">Glosarium</div>
+          </div>
+        </div>
+        <p class="page-sub" style="margin-top:0">Kamus ringkas istilah yang sudah kamu pelajari. Ketik untuk mencari.</p>
+        <input type="text" id="glossary-search" class="glossary-search" placeholder="Cari istilah...">
+        <div id="glossary-list"></div>
+      </section>
+
       <section id="screen-profile" class="hidden">
         <div class="page-head" style="padding-bottom:2px"><h1 class="page-title">Profil</h1></div>
         <div class="profile-photo-wrap">
-          <button class="profile-photo" id="prof-photo-btn" aria-label="Ganti foto profil">
-            <span id="prof-photo-content"></span>
-          </button>
+          <button class="profile-photo" id="prof-photo-btn" aria-label="Ganti foto profil"><span id="prof-photo-content"></span></button>
           <div class="photo-edit-badge">
             <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></svg>
           </div>
@@ -523,11 +614,20 @@ textarea.modal-input{resize:vertical;min-height:80px;max-height:140px;line-heigh
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
           Profil tersimpan di perangkat ini
         </p>
+
         <div class="section-label">Level & Progress</div>
         <div class="stat-grid">
           <div class="stat-box"><div class="lbl">Level</div><div class="val" id="prof-level" style="font-size:15px">HTML Newbie</div></div>
           <div class="stat-box"><div class="lbl">Lesson Selesai</div><div class="val" id="prof-lessons">0</div></div>
         </div>
+
+        <div style="margin-top:16px">
+          <button class="btn ghost" id="open-glossary-btn">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v13.5"/><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/></svg>
+            Buka Glosarium
+          </button>
+        </div>
+
         <div class="section-label" style="margin-top:20px">Pencapaian</div>
         <div class="badge-grid" id="badge-grid"></div>
         <div style="margin-top:28px;display:flex;flex-direction:column;gap:10px">
@@ -640,302 +740,470 @@ const CONFIG = {
     { min: 700, name: 'HTML Builder' }
   ],
   SECTIONS: ['HTML Fundamentals','Text & Formatting','Links & Images','Lists & Tables','Forms','Semantic HTML','Mini Projects'],
-  LS_KEY: 'tagquest_state_v7',
+  LS_KEY: 'tagquest_state_v9',
   SEC_PER_STEP: 30
 };
 
-/* KURIKULUM */
+/* ============================================================
+   KURIKULUM — notes ditulis sebagai kalimat alami.
+   Tag di tengah kalimat dibungkus <code>&lt;tag&gt;</code>
+   agar dirender sebagai chip inline.
+   ============================================================ */
 const LESSONS = [
+{ id:'s0l0', section:'HTML Fundamentals', title:'Pengenalan: Dunia Kode',
+  steps:[
+    { t:'card', v:'def', b:'Sebelum masuk ke HTML, kita kenalan dulu sama dunia ini. Anggap saja kamu baru pertama kali dengar kata "coding" atau "kode". Tenang, kita mulai dari yang paling dasar.' },
+    { t:'card', v:'def', b:'<b>Kode</b> itu seperti resep masakan, tapi untuk komputer. Resep berisi langkah-langkah seperti "potong bawang, tumis, tambahkan garam". Kode juga berisi perintah kecil yang dijalankan komputer satu per satu, dari atas ke bawah.' },
+    { t:'card', v:'why', b:'Komputer tidak bisa menebak apa yang kita mau. Kalau kamu ingin komputer menampilkan sesuatu, memutar video, atau membuka halaman, kamu harus memberi tahu dengan cara yang dia mengerti. Cara itu namanya kode.' },
+    { t:'card', v:'def', b:'<b>Browser</b> adalah aplikasi di HP atau komputer untuk membuka halaman web. Contohnya Chrome, Safari, Firefox, dan Edge. Ibaratnya browser itu jendela — lewat jendela itu kamu bisa melihat internet.' },
+    { t:'card', v:'ex', notes:[
+      'Di aplikasi ini, kita akan belajar HTML, yaitu bahasa khusus untuk menulis halaman web.',
+      'Kamu akan tahu bagaimana bentuk tulisannya, apa fungsinya, dan bagaimana browser membacanya.',
+      'Kita mulai pelan-pelan. Tidak perlu buru-buru.',
+      'Kalau lupa istilah, buka <b>Glosarium</b> di halaman Profil.'
+    ] },
+    { t:'x', k:'quiz', q:'Manakah yang termasuk <b>browser</b>?',
+      opts:[['Chrome', true], ['Kalkulator', false], ['Kamera', false], ['Jam alarm', false]],
+      ex:'Chrome adalah aplikasi untuk membuka halaman web. Selain Chrome, ada juga Safari, Firefox, dan Edge.' } ] },
+
 { id:'s1l1', section:'HTML Fundamentals', title:'Apa itu HTML?',
   steps:[
-    { t:'card', v:'def', b:'<b>HTML</b> = <i>HyperText Markup Language</i> — bahasa penyusun <b>struktur</b> halaman web. Tugasnya memberi tahu browser: "ini judul", "ini paragraf", "ini gambar".' },
-    { t:'card', v:'why', b:'Semua website pakai HTML. Browser membaca HTML untuk tahu bagian mana judul besar, teks biasa, atau tombol. Tanpa HTML, isi halaman jadi satu blok berantakan.' },
-    { t:'card', v:'ex', code:'<h1>Halo, dunia!</h1>\n<p>Ini halaman web pertamaku.</p>', notes:['<code>&lt;h1&gt;</code> = judul utama.','<code>&lt;p&gt;</code> = paragraf.','Browser menerjemahkan kode jadi tampilan.'] },
-    { t:'card', v:'warn', b:'HTML itu bukan bahasa pemrograman. Cuma <b>penanda</b> — tidak bisa menghitung atau membuat logika.' },
-    { t:'x', k:'quiz', q:'Apa fungsi utama HTML?',
-      opts:[['Mengatur warna',false],['Menyusun struktur & isi halaman',true],['Menyimpan data',false],['Membuat database',false]],
-      ex:'HTML menyusun struktur & isi. Urusan warna biasanya CSS.' },
-    { t:'x', k:'analyze', hardOnly:true,
-      code:'<h1>Selamat Datang</h1>\n<p>Ini halaman web.</p>\n<p>Selamat belajar!</p>',
-      q:'Ada berapa elemen <code>&lt;p&gt;</code> di kode di atas?',
-      opts:[['1',false],['2',true],['3',false],['0',false]],
-      ex:'Ada 2 tag &lt;p&gt; — masing-masing berisi satu paragraf.' } ] },
+    { t:'card', v:'def', b:'<b>HTML</b> itu seperti kerangka rumah. Sebelum rumah dicat warna atau dihias, tukang bangunan harus menentukan dulu: mana dinding, mana pintu, mana jendela. HTML bertugas menyusun kerangka halaman web, bukan warna atau hiasannya.' },
+    { t:'card', v:'why', b:'Browser perlu tahu bagian mana dari halaman yang harus tampil sebagai tulisan besar, dan mana yang tampil sebagai tulisan biasa. Tanpa HTML, semua tulisan akan tampil polos sama rata dan tidak karuan.' },
+    { t:'card', v:'ex', code:'<h1>Halo, dunia!</h1>\n<p>Ini halaman web pertamaku.</p>',
+      notes:[
+        'Baris pertama membuat tulisan besar dan tebal: <strong>Halo, dunia!</strong>',
+        'Baris kedua menampilkan tulisan biasa: <em>Ini halaman web pertamaku.</em>',
+        'Kode seperti <code>&lt;h1&gt;</code> dan <code>&lt;p&gt;</code> itu namanya <strong>tag</strong>. Kita akan bahas tag lebih lengkap di lesson berikutnya.'
+      ] },
+    { t:'card', v:'warn', b:'HTML bukan bahasa yang bisa menghitung atau menyimpan data. Dia cuma memberi tanda pada bagian-bagian halaman. Kalau nanti kamu mau tombol yang bisa diklik atau kalkulator, itu butuh bahasa lain. Untuk sekarang, kita fokus HTML dulu.' },
+    { t:'x', k:'quiz', q:'Menurutmu, apa fungsi utama HTML?',
+      opts:[
+        ['Mengatur warna dan animasi halaman', false],
+        ['Menyusun bagian-bagian halaman web', true],
+        ['Menyimpan data di server', false],
+        ['Membuat aplikasi mobile', false]
+      ],
+      ex:'HTML menyusun kerangka halaman, mirip tukang bangunan yang membuat struktur rumah. Urusan warna nanti ada bahasa lain.' } ] },
 
-{ id:'s1l2', section:'HTML Fundamentals', title:'Struktur Dasar HTML',
+{ id:'s1l2', section:'HTML Fundamentals', title:'Kenalan sama Tag',
   steps:[
-    { t:'card', v:'def', b:'Setiap halaman HTML punya kerangka tetap: <code>&lt;head&gt;</code> (informasi tak terlihat) dan <code>&lt;body&gt;</code> (isi yang tampil).' },
-    { t:'card', v:'why', b:'Bayangkan rumah. <code>&lt;head&gt;</code> itu atap dan fondasi. <code>&lt;body&gt;</code> itu ruang tamu dan kamar.' },
-    { t:'card', v:'ex', code:'<!DOCTYPE html>\n<html>\n  <head>\n    <title>Halaman Pertamaku</title>\n  </head>\n  <body>\n    <h1>Halo!</h1>\n  </body>\n</html>', notes:['<code>&lt;html&gt;</code> = pembungkus dokumen.','<code>&lt;head&gt;</code> = info halaman.','<code>&lt;body&gt;</code> = konten yang dilihat.'] },
-    { t:'card', v:'warn', b:'Lupa menutup <code>&lt;body&gt;</code> atau <code>&lt;head&gt;</code> bikin struktur berantakan.' },
-    { t:'x', k:'quiz', q:'Bagian mana yang isinya terlihat di layar browser?',
-      opts:[['<head>',false],['<body>',true],['<title>',false],['<!DOCTYPE>',false]],
-      ex:'Isi <body> yang tampil.' },
-    { t:'x', k:'analyze', hardOnly:true,
-      code:'<html>\n  <head>\n    <title>Test</title>\n  </head>\n  <body>\n    <h1>Halo</h1>\n  </body>\n</html>',
-      q:'Elemen apa yang <b>tidak akan terlihat</b> di layar browser?',
-      opts:[['<h1>',false],['<title>',true],['<body>',false],['Tidak ada',false]],
-      ex:'&lt;title&gt; ada di dalam &lt;head&gt;, jadi tampil di tab browser — bukan di halaman.' } ] },
+    { t:'card', v:'def', b:'<b>Tag</b> itu seperti label stiker yang kita tempel ke sesuatu untuk memberi keterangan. Contoh di dunia nyata: label "FRAGILE" di kardus barang pecah belah. Bedanya, di HTML, label ini ditulis pakai kurung siku, yaitu tanda <code>&lt;</code> di depan dan <code>&gt;</code> di belakang.' },
+    { t:'card', v:'why', b:'Kamu pakai tag untuk memberi tahu browser bahwa bagian ini adalah judul, dan bagian itu adalah paragraf. Tanpa tag, semua tulisan tampil sama saja, tidak ada bedanya mana judul dan mana isi.' },
+    { t:'card', v:'ex', code:'<h1>Resep Kopi</h1>',
+      notes:[
+        'Bagian <code>&lt;h1&gt;</code> adalah tag-nya.',
+        'Tulisan "Resep Kopi" di antaranya disebut <strong>isi</strong>.',
+        'Hasilnya di browser: "Resep Kopi" muncul besar dan tebal.'
+      ] },
+    { t:'card', v:'warn', b:'Kurung siku wajib lengkap: tanda <code>&lt;</code> di awal dan <code>&gt;</code> di akhir. Kalau salah satu hilang, browser tidak mengenali itu sebagai tag, malah muncul sebagai tulisan biasa.' },
+    { t:'x', k:'quiz', q:'Apa fungsi <b>tag</b> di HTML?',
+      opts:[
+        ['Menghias warna halaman', false],
+        ['Memberi keterangan pada bagian halaman', true],
+        ['Menyimpan foto', false],
+        ['Mengubah ukuran layar', false]
+      ],
+      ex:'Tag itu seperti label yang memberi tahu browser bagian ini apa. Sama seperti label "FRAGILE" di kardus memberi tahu isinya apa.' } ] },
 
-{ id:'s1l3', section:'HTML Fundamentals', title:'<!DOCTYPE html>',
+{ id:'s1l3', section:'HTML Fundamentals', title:'Tag Berpasangan',
   steps:[
-    { t:'card', v:'def', b:'<code>&lt;!DOCTYPE html&gt;</code> adalah baris pertama di setiap dokumen HTML. Fungsinya memberi tahu browser: <b>"dokumen ini pakai standar HTML5"</b>.' },
-    { t:'card', v:'why', b:'Dulu HTML punya banyak versi dengan aturan berbeda. DOCTYPE mencegah browser menebak-nebak versi.' },
-    { t:'card', v:'ex', code:'<!DOCTYPE html>\n<html>\n  <body>\n    <p>Halo!</p>\n  </body>\n</html>', notes:['Selalu di paling atas.','Bukan tag, jadi tidak punya penutup.'] },
-    { t:'card', v:'warn', b:'Kesalahan umum: menaruh <code>&lt;!DOCTYPE&gt;</code> di dalam <code>&lt;html&gt;</code>.' },
-    { t:'x', k:'type', q:'Ketik baris DOCTYPE di bawah ini:', starter:'', ans:'<!DOCTYPE html>',
-      h1:'Diawali tanda seru dan semua huruf besar.', h2:'Formatnya: <b>&lt;!DOCTYPE html&gt;</b>' } ] },
+    { t:'card', v:'def', b:'Sebagian besar tag datang berpasangan: ada <b>tag pembuka</b> dan <b>tag penutup</b>. Tag penutup bedanya cuma ditambahkan garis miring <code>/</code> setelah tanda buka. Ibaratnya seperti tanda kurung <code>( )</code> di matematika — kamu buka, isi sesuatu, lalu tutup.' },
+    { t:'card', v:'why', b:'Tag penutup memberi tahu browser bahwa bagian ini sudah selesai dan tampilan kembali normal. Kalau kamu lupa menutup, semua tulisan berikutnya akan ikut jadi besar, seperti kurung yang lupa ditutup sehingga semua ikut masuk ke dalam.' },
+    { t:'card', v:'ex', code:'<h1>Selamat Datang</h1>\n<p>Website saya.</p>',
+      notes:[
+        '<code>&lt;h1&gt;</code> adalah tag pembuka untuk judul besar.',
+        '<code>&lt;/h1&gt;</code> adalah tag penutup untuk judul besar.',
+        'Tulisan "Website saya" pakai tag <code>&lt;p&gt;</code>, singkatan dari <em>paragraph</em> atau paragraf. Tag p juga berpasangan.'
+      ] },
+    { t:'card', v:'warn', b:'Lupa tag penutup itu kesalahan paling umum pemula. Kalau tampilan di browser aneh, cek dulu apakah semua tag sudah ditutup.' },
+    { t:'x', k:'arrange', q:'Susun tag penutup yang tepat untuk melengkapi kode:',
+      tpl:'<h1>Halo Dunia___',
+      pieces:['</h1>','<p>','</p>','<h1>'],
+      ans:['</h1>'],
+      h1:'Perhatikan tag pembukanya dulu. Tag penutup harus cocok dengan pembukanya.',
+      h2:'Tag pembukanya <b>&lt;h1&gt;</b>, jadi penutupnya diawali <b>&lt;/</b>' } ] },
 
-{ id:'s1l4', section:'HTML Fundamentals', title:'Tag HTML',
+{ id:'s1l4', section:'HTML Fundamentals', title:'Elemen HTML',
   steps:[
-    { t:'card', v:'def', b:'<b>Tag</b> adalah perintah di antara kurung siku <code>&lt;</code> dan <code>&gt;</code>. Contoh: <code>&lt;p&gt;</code>, <code>&lt;h1&gt;</code>, <code>&lt;img&gt;</code>.' },
-    { t:'card', v:'why', b:'Kamu pakai tag untuk memberi tahu browser maksud suatu teks.' },
-    { t:'card', v:'ex', code:'<h1>Resep Kopi</h1>\n<p>Bahan utama: air panas.</p>', notes:['<code>&lt;h1&gt;</code> = tag judul.','<code>&lt;p&gt;</code> = tag paragraf.'] },
-    { t:'card', v:'warn', b:'Kesalahan umum: menulis <code>&lt;h1</code> tanpa penutup <code>&gt;</code>.' },
-    { t:'x', k:'quiz', q:'Manakah yang merupakan tag penutup?',
-      opts:[['<p>',false],['<p/>',false],['</p>',true],['<//p>',false]],
-      ex:'Tag penutup diawali garis miring setelah kurung siku: </p>.' } ] },
-
-{ id:'s1l5', section:'HTML Fundamentals', title:'Opening & Closing Tag',
-  steps:[
-    { t:'card', v:'def', b:'Sebagian besar tag datang <b>berpasangan</b>: <code>&lt;h1&gt;</code> adalah <b>opening tag</b>, <code>&lt;/h1&gt;</code> adalah <b>closing tag</b>.' },
-    { t:'card', v:'why', b:'Closing tag memberi tahu browser di mana suatu elemen berakhir.' },
-    { t:'card', v:'ex', code:'<h1>Selamat Datang</h1>\n<p>Website saya.</p>', notes:['<code>&lt;h1&gt;</code> = opening tag.','<code>Selamat Datang</code> = konten.','<code>&lt;/h1&gt;</code> = closing tag.'] },
-    { t:'card', v:'warn', b:'Lupa tag penutup = kesalahan paling umum pemula.' },
-    { t:'x', k:'arrange', q:'Susun tag penutup yang tepat:', tpl:'<h1>Halo Dunia___',
-      pieces:['</h1>','<p>','</p>','<h1>'], ans:['</h1>'],
-      h1:'Perhatikan tag pembukanya.', h2:'Tag pembukanya <b>&lt;h1&gt;</b>, jadi penutupnya diawali <b>&lt;/</b>' } ] },
-
-{ id:'s1l6', section:'HTML Fundamentals', title:'Elemen HTML',
-  steps:[
-    { t:'card', v:'def', b:'<b>Elemen</b> = opening tag + konten + closing tag. Bukan cuma tag-nya, tapi keseluruhan paketnya.' },
-    { t:'card', v:'why', b:'Istilah ini dipakai supaya komunikasi teknis jelas.' },
+    { t:'card', v:'def', b:'<b>Elemen</b> adalah gabungan dari tag pembuka, isi, dan tag penutup. Ketiganya jadi satu kesatuan utuh. Analoginya seperti kotak sepatu: kamu punya tutup atas yang mewakili tag pembuka, sepatu di dalamnya yang mewakili isi, dan tutup bawah yang mewakili tag penutup. Gabungan ketiganya disebut satu kotak sepatu.' },
+    { t:'card', v:'why', b:'Istilah elemen dipakai supaya kita bisa bicara tentang satu kesatuan. Saat orang bilang "tambahkan elemen gambar", maksudnya bukan cuma tag-nya, tapi tag bersama isinya sekaligus.' },
     { t:'e', tag:'button', content:'Klik Aku' },
-    { t:'card', v:'warn', b:'<b>Tag</b> hanya bagian <code>&lt;...&gt;</code>, sedangkan <b>elemen</b> mencakup semuanya.' },
-    { t:'x', k:'quiz', q:'Apa saja yang termasuk dalam satu elemen?',
-      opts:[['Hanya tag pembuka',false],['Tag pembuka + konten + tag penutup',true],['Hanya konten teks',false],['Hanya atribut',false]],
-      ex:'Elemen = opening tag, konten, dan closing tag.' } ] },
+    { t:'card', v:'warn', b:'Jangan tertukar antara tag dan elemen. <strong>Tag</strong> hanya bagian <code>&lt;...&gt;</code> saja, sedangkan <strong>elemen</strong> mencakup tag pembuka, isi, dan tag penutup. Kira-kira seperti beda antara tutup kotak sepatu dengan satu kotak sepatu lengkap.' },
+    { t:'x', k:'quiz', q:'Satu elemen terdiri dari apa saja?',
+      opts:[
+        ['Hanya tag pembuka', false],
+        ['Tag pembuka + isi + tag penutup', true],
+        ['Hanya isi teks', false],
+        ['Hanya tag penutup', false]
+      ],
+      ex:'Elemen adalah gabungan lengkap. Sama seperti satu kotak sepatu terdiri dari tutup atas, sepatu, dan tutup bawah.' } ] },
 
-{ id:'s1l7', section:'HTML Fundamentals', title:'Elemen <html>',
+{ id:'s1l5', section:'HTML Fundamentals', title:'Struktur Dasar Halaman',
   steps:[
-    { t:'card', v:'def', b:'<code>&lt;html&gt;</code> adalah <b>pembungkus utama</b> seluruh dokumen.' },
-    { t:'card', v:'why', b:'Browser perlu tahu di mana dokumen HTML dimulai dan berakhir.' },
-    { t:'card', v:'ex', code:'<!DOCTYPE html>\n<html lang="id">\n  <head>...</head>\n  <body>...</body>\n</html>', notes:['<code>&lt;html&gt;</code> langsung setelah DOCTYPE.','Berisi <code>&lt;head&gt;</code> dan <code>&lt;body&gt;</code>.'] },
-    { t:'card', v:'warn', b:'Kesalahan: menaruh konten langsung di dalam <code>&lt;html&gt;</code> tanpa <code>&lt;body&gt;</code>.' },
-    { t:'x', k:'fill', q:'Lengkapi tag pembuka:', tpl:'___\n  <body>\n    <p>Halo</p>\n  </body>\n</html>',
-      chips:['<html>','</html>','<body>','<head>'], ans:'<html>',
-      h1:'Dokumen dibuka dengan tag pembuka <b>&lt;html&gt;</b>', h2:'Pilih <b>&lt;html&gt;</b>' } ] },
+    { t:'card', v:'def', b:'Setiap halaman web punya kerangka tetap dengan dua bagian: bagian informasi dan bagian isi. Analoginya seperti buku. Di balik sampul ada halaman data buku berisi judul, penulis, dan tahun terbit, yang tidak terlihat saat kamu baca. Lalu ada halaman-halaman isi cerita, dan itu yang kamu lihat.' },
+    { t:'card', v:'why', b:'Browser perlu tahu mana bagian yang harus ditampilkan ke pengunjung, dan mana yang cuma informasi internal seperti judul tab. Kalau semuanya dicampur, browser bingung.' },
+    { t:'card', v:'ex', code:'<!DOCTYPE html>\n<html>\n  <head>\n    <title>Halaman Pertamaku</title>\n  </head>\n  <body>\n    <h1>Halo!</h1>\n  </body>\n</html>',
+      notes:[
+        '<code>&lt;head&gt;</code> adalah bagian informasi yang tidak tampil di layar.',
+        '<code>&lt;body&gt;</code> adalah bagian isi yang tampil ke pengunjung.',
+        '<code>&lt;title&gt;</code> menentukan judul tab browser, contohnya muncul di tab atas Chrome.'
+      ] },
+    { t:'card', v:'warn', b:'Kalau lupa menutup <code>&lt;body&gt;</code> atau <code>&lt;head&gt;</code>, struktur jadi berantakan. Browser biasanya tetap menampilkan, tapi bisa berantakan di beberapa browser.' },
+    { t:'x', k:'quiz', q:'Bagian mana dari halaman yang <b>terlihat oleh pengunjung</b> di layar?',
+      opts:[
+        ['Isi di dalam <head>', false],
+        ['Isi di dalam <body>', true],
+        ['Isi <title>', false],
+        ['Baris DOCTYPE', false]
+      ],
+      ex:'Isi <body> yang tampil. Isi <head> seperti <title> hanya muncul sebagai judul tab, bukan di halaman.' } ] },
 
-{ id:'s1l8', section:'HTML Fundamentals', title:'Elemen <head>',
+{ id:'s1l6', section:'HTML Fundamentals', title:'Baris DOCTYPE',
   steps:[
-    { t:'card', v:'def', b:'<code>&lt;head&gt;</code> berisi <b>informasi tentang halaman</b> — bukan yang terlihat pengunjung.' },
-    { t:'card', v:'why', b:'Pembaca layar dan mesin pencari membaca <code>&lt;head&gt;</code> untuk tahu konteks halaman.' },
-    { t:'card', v:'ex', code:'<head>\n  <title>Website Keren Saya</title>\n  <meta charset="UTF-8">\n</head>', notes:['<code>&lt;title&gt;</code> = judul di tab browser.','<code>&lt;meta charset&gt;</code> = atur encoding karakter.'] },
-    { t:'card', v:'warn', b:'Jangan taruh teks atau gambar di dalam <code>&lt;head&gt;</code>.' },
-    { t:'x', k:'quiz', q:'Di mana elemen <title> harus diletakkan?',
-      opts:[['Di dalam <body>',false],['Di dalam <head>',true],['Di luar <html>',false],['Di dalam <p>',false]],
-      ex:'<title> adalah informasi halaman.' } ] },
+    { t:'card', v:'def', b:'<code>&lt;!DOCTYPE html&gt;</code> itu seperti cap "Resep Versi Terbaru" di atas kertas resep. Fungsinya memberi tahu browser bahwa dokumen ini pakai aturan HTML versi terbaru. Baris ini selalu ditulis paling atas.' },
+    { t:'card', v:'why', b:'Dulu HTML punya banyak versi dengan aturan berbeda-beda. Dengan menulis baris ini di paling atas, browser tidak perlu menebak-nebak versi mana yang kamu pakai.' },
+    { t:'card', v:'ex', code:'<!DOCTYPE html>\n<html>\n  <body>\n    <p>Halo!</p>\n  </body>\n</html>',
+      notes:[
+        'Baris <code>&lt;!DOCTYPE html&gt;</code> selalu ditulis di paling atas.',
+        'Baris ini tidak punya tag penutup, cukup satu baris saja.',
+        'Tulis dengan huruf besar semua, kecuali kata "html" yang ditulis huruf kecil.'
+      ] },
+    { t:'card', v:'warn', b:'Kesalahan umum adalah menaruh baris DOCTYPE di dalam <code>&lt;html&gt;</code>. Yang benar, letakkannya di baris paling atas, sebelum tag <code>&lt;html&gt;</code>.' },
+    { t:'x', k:'type', q:'Ketik baris DOCTYPE di bawah ini:', starter:'', ans:'<!DOCTYPE html>',
+      h1:'Diawali tanda seru dan huruf besar semua.',
+      h2:'Formatnya: <b>&lt;!DOCTYPE html&gt;</b>' } ] },
 
-{ id:'s1l9', section:'HTML Fundamentals', title:'Elemen <body>',
+{ id:'s1l7', section:'HTML Fundamentals', title:'Pembungkus <html>',
   steps:[
-    { t:'card', v:'def', b:'<code>&lt;body&gt;</code> adalah tempat <b>semua konten yang terlihat</b>.' },
-    { t:'card', v:'why', b:'Browser hanya menggambar isi <code>&lt;body&gt;</code> ke halaman.' },
-    { t:'card', v:'ex', code:'<body>\n  <h1>Selamat Datang</h1>\n  <p>Ini website saya.</p>\n</body>', notes:['Selalu di dalam <code>&lt;html&gt;</code>.','Biasanya setelah <code>&lt;head&gt;</code>.'] },
-    { t:'card', v:'warn', b:'Kesalahan umum: menulis konten setelah <code>&lt;/body&gt;</code>.' },
+    { t:'card', v:'def', b:'Tag <code>&lt;html&gt;</code> itu seperti kardus besar yang membungkus semua isi dokumen. Semua bagian lain, mulai dari informasi, isi, judul, sampai paragraf, ditaruh di dalam kardus ini.' },
+    { t:'card', v:'why', b:'Browser perlu tahu di mana dokumen dimulai dan di mana berakhir. Kardus besar ini memberi batas yang jelas.' },
+    { t:'card', v:'ex', code:'<!DOCTYPE html>\n<html lang="id">\n  <head>...</head>\n  <body>...</body>\n</html>',
+      notes:[
+        '<code>&lt;html&gt;</code> adalah pembuka kardus.',
+        '<code>&lt;/html&gt;</code> adalah penutup kardus.',
+        'Semua elemen lain harus berada di antara keduanya.'
+      ] },
+    { t:'card', v:'warn', b:'Kesalahan yang sering terjadi: menaruh tulisan atau konten langsung di dalam <code>&lt;html&gt;</code> tanpa <code>&lt;body&gt;</code>. Yang benar, semua konten masuk ke <code>&lt;body&gt;</code>.' },
+    { t:'x', k:'fill', q:'Lengkapi tag pembuka untuk seluruh dokumen:',
+      tpl:'___\n  <body>\n    <p>Halo</p>\n  </body>\n</html>',
+      chips:['<html>','</html>','<body>','<head>'],
+      ans:'<html>',
+      h1:'Dokumen dibuka dengan tag pembuka <b>&lt;html&gt;</b>',
+      h2:'Pilih <b>&lt;html&gt;</b> (tanpa garis miring)' } ] },
+
+{ id:'s1l8', section:'HTML Fundamentals', title:'Bagian Informasi: <head>',
+  steps:[
+    { t:'card', v:'def', b:'<code>&lt;head&gt;</code> itu seperti lembar data buku di balik sampul. Ada judul, penulis, dan penerbit, tapi kamu tidak melihatnya saat membaca halaman. Isinya adalah informasi tentang halaman, bukan yang tampil ke pengunjung.' },
+    { t:'card', v:'why', b:'Mesin pencari seperti Google dan pembaca layar membaca bagian ini untuk memahami apa isi halamanmu. Contohnya, judul yang muncul di tab browser berasal dari sini.' },
+    { t:'card', v:'ex', code:'<head>\n  <title>Website Keren Saya</title>\n</head>',
+      notes:[
+        '<code>&lt;title&gt;</code> menentukan judul yang muncul di tab browser.',
+        'Coba lihat tab Chrome atau Safari. Tulisan di sana berasal dari <code>&lt;title&gt;</code>.',
+        'Tidak ada yang tampil di area halaman dari bagian <code>&lt;head&gt;</code>.'
+      ] },
+    { t:'card', v:'warn', b:'Jangan taruh tulisan biasa atau gambar di dalam <code>&lt;head&gt;</code>. Browser akan mengabaikannya, dan struktur kodemu berantakan.' },
+    { t:'x', k:'quiz', q:'Di mana tag <code>&lt;title&gt;</code> harus diletakkan?',
+      opts:[
+        ['Di dalam <body>', false],
+        ['Di dalam <head>', true],
+        ['Di luar <html>', false],
+        ['Di dalam <p>', false]
+      ],
+      ex:'<title> adalah informasi tentang halaman, jadi tempatnya di dalam <head>.' } ] },
+
+{ id:'s1l9', section:'HTML Fundamentals', title:'Bagian Isi: <body>',
+  steps:[
+    { t:'card', v:'def', b:'<code>&lt;body&gt;</code> itu seperti halaman-halaman isi buku. Semua yang dilihat pembaca, baik cerita, gambar, maupun tulisan, ada di sini. Di HTML, semua yang tampil ke pengunjung seperti judul besar, paragraf, dan tombol, ditaruh di dalam <code>&lt;body&gt;</code>.' },
+    { t:'card', v:'why', b:'Browser hanya menampilkan apa pun yang ada di dalam <code>&lt;body&gt;</code>. Jadi kalau kamu mau sesuatu muncul di layar, taruh di sini.' },
+    { t:'card', v:'ex', code:'<body>\n  <h1>Selamat Datang</h1>\n  <p>Ini website saya.</p>\n</body>',
+      notes:[
+        'Selalu berada di dalam <code>&lt;html&gt;</code>.',
+        'Biasanya ditaruh setelah <code>&lt;head&gt;</code>.',
+        'Boleh berisi banyak elemen sekaligus.',
+        'Urutan elemen di dalam <code>&lt;body&gt;</code> menentukan urutan tampil di layar.'
+      ] },
+    { t:'card', v:'warn', b:'Kesalahan umum adalah menulis tulisan di luar <code>&lt;body&gt;</code>, misalnya setelah <code>&lt;/body&gt;</code>. Browser biasanya memindahkannya ke dalam body otomatis, tapi kodenya jadi membingungkan.' },
     { t:'x', k:'arrange', q:'Lengkapi tag penutup body:', tpl:'<body>\n  <p>Halo</p>\n___\n</html>',
-      pieces:['</body>','</html>','<body>','</p>'], ans:['</body>'],
-      h1:'Setiap tag pembuka punya pasangan penutupnya.', h2:'Tag pembuka <b>&lt;body&gt;</b> ditutup dengan <b>&lt;/</b>' } ] },
+      pieces:['</body>','</html>','<body>','</p>'],
+      ans:['</body>'],
+      h1:'Setiap tag pembuka punya pasangan penutupnya.',
+      h2:'Tag pembuka <b>&lt;body&gt;</b> ditutup dengan <b>&lt;/</b>' } ] },
 
 { id:'s1l10', section:'HTML Fundamentals', title:'Halaman HTML Pertama',
   steps:[
-    { t:'card', v:'def', b:'Saatnya gabungkan semua yang sudah kamu pelajari menjadi satu halaman HTML lengkap.' },
-    { t:'card', v:'why', b:'Ini kerangka yang akan kamu pakai di SEMUA file HTML nanti.' },
-    { t:'card', v:'ex', code:'<!DOCTYPE html>\n<html>\n  <head>\n    <title>Halo</title>\n  </head>\n  <body>\n    <h1>Halo</h1>\n  </body>\n</html>', notes:['Baris 1: DOCTYPE.','Bagian head berisi title.','Bagian body berisi judul.'] },
-    { t:'x', k:'type', q:'Tulis halaman HTML lengkap dengan judul "Halo" di dalam body:', starter:'',
+    { t:'card', v:'def', b:'Saatnya gabungkan semua yang sudah kamu pelajari. Bayangkan kamu sedang menulis satu halaman buku lengkap: sampul data di bagian head, isi cerita di bagian body, dan cap versi terbaru di atas dengan DOCTYPE. Semua ini jadi satu dokumen HTML utuh.' },
+    { t:'card', v:'why', b:'Ini kerangka yang akan kamu pakai di semua file HTML nanti. Hafal tidak perlu, tapi kenali urutannya: DOCTYPE dulu, lalu html, isinya head dan body.' },
+    { t:'card', v:'ex', code:'<!DOCTYPE html>\n<html>\n  <head>\n    <title>Halo</title>\n  </head>\n  <body>\n    <h1>Halo</h1>\n  </body>\n</html>',
+      notes:[
+        'Baris pertama adalah DOCTYPE, yaitu cap versi terbaru.',
+        'Baris kedua adalah pembuka <code>&lt;html&gt;</code>, kardus besar.',
+        'Bagian <code>&lt;head&gt;</code> berisi <code>&lt;title&gt;</code> yang muncul di tab browser.',
+        'Bagian <code>&lt;body&gt;</code> berisi <code>&lt;h1&gt;</code> yang muncul di layar.',
+        'Terakhir, tutup semua tag yang sudah dibuka.'
+      ] },
+    { t:'x', k:'type', q:'Tulis halaman HTML lengkap dengan judul "Halo" di dalam body:',
+      starter:'',
       ans:'<!DOCTYPE html><html><head><title>Halaman</title></head><body><h1>Halo</h1></body></html>',
-      loose:'contains', required:['<!doctype html>','<html>','</html>','<body>','</body>','<h1>halo</h1>'],
-      h1:'Mulai dari <!DOCTYPE html>.', h2:'Pastikan ada <b>&lt;h1&gt;Halo&lt;/h1&gt;</b> di dalam body.' },
-    { t:'x', k:'analyze', hardOnly:true,
-      code:'<!DOCTYPE html>\n<html>\n  <head>\n    <title>Beranda</title>\n  </head>\n  <body>\n    <h1>Selamat Datang</h1>\n    <p>Ini paragraf pertama.</p>\n    <p>Ini paragraf kedua.</p>\n  </body>\n</html>',
-      q:'Elemen apa yang muncul <b>pertama kali</b> di halaman browser?',
-      opts:[['Judul tab "Beranda"',false],['Heading <h1> "Selamat Datang"',true],['Paragraf pertama',false],['Paragraf kedua',false]],
-      ex:'&lt;title&gt; ada di tab (tidak terlihat di halaman). Konten pertama yang terlihat adalah &lt;h1&gt;.' } ] },
+      loose:'contains',
+      required:['<!doctype html>','<html>','</html>','<body>','</body>','<h1>halo</h1>'],
+      h1:'Mulai dari <!DOCTYPE html>, lalu <html>, <head>, dan <body>.',
+      h2:'Pastikan ada <b>&lt;h1&gt;Halo&lt;/h1&gt;</b> di dalam body.' } ] },
 
 { id:'s2l1', section:'Text & Formatting', title:'Judul dengan <h1>–<h6>',
   steps:[
-    { t:'card', v:'def', b:'HTML punya 6 tingkat judul: <code>&lt;h1&gt;</code> sampai <code>&lt;h6&gt;</code>.' },
-    { t:'card', v:'why', b:'Judul membantu pembaca memindai halaman. Google memakainya untuk memahami isi.' },
-    { t:'card', v:'ex', code:'<h1>Panduan Belajar HTML</h1>\n<h2>Bab 1: Pengenalan</h2>\n<h3>1.1 Apa itu HTML?</h3>', notes:['<code>&lt;h1&gt;</code> = judul utama.','<code>&lt;h2&gt;</code> = sub-judul.','Jangan lompat dari h1 ke h3.'] },
-    { t:'card', v:'warn', b:'Jangan pakai <code>&lt;h1&gt;</code> berkali-kali hanya biar teks besar.' },
+    { t:'card', v:'def', b:'HTML punya 6 tingkat judul, mulai dari <code>&lt;h1&gt;</code> sampai <code>&lt;h6&gt;</code>. Ibaratnya seperti judul bab di buku pelajaran: ada judul besar "BAB 1", ada sub-judul "1.1 Latar Belakang", dan ada sub-sub-judul "1.1.1 Sejarah". Semuanya judul, tapi ukurannya beda.' },
+    { t:'card', v:'why', b:'Judul membantu pembaca memindai halaman dengan cepat. Google juga memakai judul untuk memahami isi halaman. Satu halaman sebaiknya punya tepat satu <code>&lt;h1&gt;</code> sebagai judul utama.' },
+    { t:'card', v:'ex', code:'<h1>Panduan Belajar HTML</h1>\n<h2>Bab 1: Pengenalan</h2>\n<h3>1.1 Apa itu HTML?</h3>',
+      notes:[
+        '<code>&lt;h1&gt;</code> adalah judul paling besar.',
+        '<code>&lt;h2&gt;</code> adalah sub-judul atau bab.',
+        '<code>&lt;h3&gt;</code> adalah sub-sub-judul.',
+        'Jangan lompat dari h1 ke h3 tanpa h2.'
+      ] },
+    { t:'card', v:'warn', b:'Jangan pakai <code>&lt;h1&gt;</code> berkali-kali hanya biar tulisan tampak besar. Kalau cuma mau teks besar, itu urusan bahasa lain, yaitu CSS. Judul punya makna struktural.' },
     { t:'x', k:'quiz', q:'Tag mana yang membuat teks paling besar?',
       opts:[['<h6>',false],['<h3>',false],['<h1>',true],['<p>',false]],
-      ex:'<h1> heading level tertinggi.' },
-    { t:'x', k:'analyze', hardOnly:true,
-      code:'<h1>Resep Kopi</h1>\n<h2>Bahan</h2>\n<p>Air panas</p>\n<h3>Langkah 1</h3>\n<p>Rebus air</p>',
-      q:'Ada berapa <b>tingkat heading berbeda</b> di kode di atas?',
-      opts:[['1',false],['2',false],['3',true],['4',false]],
-      ex:'Ada 3 heading: &lt;h1&gt;, &lt;h2&gt;, dan &lt;h3&gt;.' } ] },
+      ex:'<h1> adalah heading level tertinggi.' } ] },
 
 { id:'s2l2', section:'Text & Formatting', title:'Paragraf dengan <p>',
   steps:[
-    { t:'card', v:'def', b:'<code>&lt;p&gt;</code> adalah singkatan dari <i>paragraph</i>.' },
-    { t:'card', v:'why', b:'Browser otomatis memberi jarak antar paragraf.' },
-    { t:'card', v:'ex', code:'<p>Hari ini cuaca cerah.</p>\n<p>Aku belajar HTML dari nol.</p>', notes:['Tiap <code>&lt;p&gt;</code> mulai di baris baru.','Ada jarak otomatis.'] },
-    { t:'card', v:'warn', b:'Jangan pakai <code>&lt;br&gt;</code> untuk memisahkan paragraf.' },
+    { t:'card', v:'def', b:'<code>&lt;p&gt;</code> adalah singkatan dari <em>paragraph</em> atau paragraf. Ibaratnya seperti satu paragraf di buku tulis: beberapa kalimat yang saling terkait, dipisah dari paragraf lain oleh jarak.' },
+    { t:'card', v:'why', b:'Browser otomatis memberi jarak antar paragraf. Kalau kamu tulis tulisan panjang tanpa <code>&lt;p&gt;</code>, browser menampilkannya sebagai satu blok padat yang susah dibaca.' },
+    { t:'card', v:'ex', code:'<p>Hari ini cuaca cerah.</p>\n<p>Aku belajar HTML dari nol.</p>',
+      notes:[
+        'Tiap <code>&lt;p&gt;</code> mulai di baris baru.',
+        'Ada jarak otomatis antar <code>&lt;p&gt;</code>.',
+        'Untuk ganti baris di dalam paragraf, pakai <code>&lt;br&gt;</code>.'
+      ] },
+    { t:'card', v:'warn', b:'Jangan pakai <code>&lt;br&gt;</code> untuk memisahkan paragraf. <code>&lt;br&gt;</code> hanya untuk ganti baris di dalam paragraf yang sama.' },
     { t:'x', k:'type', q:'Buat paragraf berisi "Aku suka belajar":', starter:'', ans:'<p>Aku suka belajar</p>',
       h1:'Gunakan tag <b>&lt;p&gt;</b>.', h2:'Format: <b>&lt;p&gt;teks&lt;/p&gt;</b>' } ] },
 
 { id:'s2l3', section:'Text & Formatting', title:'Ganti Baris dengan <br>',
   steps:[
-    { t:'card', v:'def', b:'<code>&lt;br&gt;</code> memaksa teks pindah ke baris berikutnya. Ini <b>void element</b>.' },
-    { t:'card', v:'why', b:'Dipakai untuk alamat rumah, bait puisi, atau daftar tanpa bullet.' },
-    { t:'card', v:'ex', code:'<p>Jl. Merdeka No. 10<br>\nJakarta Pusat<br>\nIndonesia</p>', notes:['Cukup <code>&lt;br&gt;</code>, tanpa <code>&lt;/br&gt;</code>.'] },
-    { t:'card', v:'warn', b:'Jangan pakai <code>&lt;br&gt;</code> berulang-ulang untuk mengatur jarak.' },
+    { t:'card', v:'def', b:'<code>&lt;br&gt;</code> seperti tombol Enter di keyboard: memaksa tulisan pindah ke baris berikutnya. Bedanya, <code>&lt;br&gt;</code> tidak punya tag penutup. Ini yang disebut void element, yaitu elemen tanpa isi.' },
+    { t:'card', v:'why', b:'Dipakai untuk baris-baris yang tidak boleh digabung browser, seperti alamat rumah, bait puisi, atau daftar tanpa bullet.' },
+    { t:'card', v:'ex', code:'<p>Jl. Merdeka No. 10<br>\nJakarta Pusat<br>\nIndonesia</p>',
+      notes:[
+        'Cukup tulis <code>&lt;br&gt;</code>, tanpa <code>&lt;/br&gt;</code>.',
+        'Tidak menambah jarak besar, hanya pindah baris.'
+      ] },
+    { t:'card', v:'warn', b:'Jangan pakai <code>&lt;br&gt;</code> berulang-ulang untuk mengatur jarak. Itu cara lama dan tidak fleksibel.' },
     { t:'x', k:'arrange', q:'Tambahkan tag ganti baris:', tpl:'<p>Halo___Dunia</p>',
       pieces:['<br>','</br>','<p>','<hr>'], ans:['<br>'],
       h1:'Tag ganti baris tidak punya tag penutup.', h2:'Pilih <b>&lt;br&gt;</b>' } ] },
 
 { id:'s2l4', section:'Text & Formatting', title:'Garis Pemisah dengan <hr>',
   steps:[
-    { t:'card', v:'def', b:'<code>&lt;hr&gt;</code> membuat garis horizontal yang memisahkan bagian konten.' },
-    { t:'card', v:'why', b:'Dipakai untuk memisahkan topik atau bagian yang berbeda.' },
-    { t:'card', v:'ex', code:'<h2>Bab 1</h2>\n<p>Isi bab pertama.</p>\n<hr>\n<h2>Bab 2</h2>\n<p>Isi bab kedua.</p>', notes:['<code>hr</code> singkatan dari <i>horizontal rule</i>.','Tidak butuh tag penutup.'] },
-    { t:'card', v:'warn', b:'Jangan pakai <code>&lt;hr&gt;</code> sebagai satu-satunya pemisah visual.' },
+    { t:'card', v:'def', b:'<code>&lt;hr&gt;</code> seperti garis pemisah yang sering kamu lihat di buku atau koran, yaitu garis horizontal tipis yang memisahkan dua topik. Sama seperti <code>&lt;br&gt;</code>, tag ini tidak punya penutup.' },
+    { t:'card', v:'why', b:'Dipakai untuk memisahkan topik atau bagian yang berbeda, misalnya antara bab atau antara artikel dan kolom komentar.' },
+    { t:'card', v:'ex', code:'<h2>Bab 1</h2>\n<p>Isi bab pertama.</p>\n<hr>\n<h2>Bab 2</h2>\n<p>Isi bab kedua.</p>',
+      notes:[
+        '<code>&lt;hr&gt;</code> adalah singkatan dari <em>horizontal rule</em> atau garis horizontal.',
+        'Tidak butuh tag penutup.'
+      ] },
+    { t:'card', v:'warn', b:'Jangan pakai <code>&lt;hr&gt;</code> sebagai satu-satunya pemisah visual antar paragraf. Kalau hanya butuh jarak, atur lewat CSS.' },
     { t:'x', k:'quiz', q:'Bagaimana cara menulis tag <hr> yang benar?',
       opts:[['<hr></hr>',false],['<hr>',true],['</hr>',false],['<hr />teks',false]],
-      ex:'<hr> adalah void element.' } ] },
+      ex:'<hr> adalah void element, jadi tidak butuh tag penutup.' } ] },
 
 { id:'s2l5', section:'Text & Formatting', title:'Menekankan dengan <strong>',
   steps:[
-    { t:'card', v:'def', b:'<code>&lt;strong&gt;</code> membuat teks jadi <b>tebal</b> dan menandai bahwa teks itu <b>penting</b>.' },
-    { t:'card', v:'why', b:'Digunakan untuk kata kunci penting — peringatan, angka penting.' },
-    { t:'card', v:'ex', code:'<p>Ingat: <strong>jangan lupa menutup tag!</strong></p>', notes:['Tampil tebal secara default.','Punya makna semantik "penting".'] },
-    { t:'card', v:'warn', b:'Jangan bungkus satu paragraf penuh dengan <code>&lt;strong&gt;</code>.' },
-    { t:'x', k:'type', q:'Buat teks "Penting!" jadi tebal dengan <strong> di dalam paragraf:', starter:'<p>',
-      ans:'<p><strong>Penting!</strong></p>',
-      h1:'Bungkus kata "Penting!".', h2:'Hasilnya: <b>&lt;p&gt;&lt;strong&gt;Penting!&lt;/strong&gt;&lt;/p&gt;</b>' } ] },
+    { t:'card', v:'def', b:'<code>&lt;strong&gt;</code> seperti menebalkan tulisan pakai spidol di buku catatan supaya menonjol. Bedanya, di HTML, tebal ini sekaligus berarti penting, bukan cuma soal tampilan.' },
+    { t:'card', v:'why', b:'Digunakan untuk kata kunci penting seperti peringatan atau angka penting. Pembaca layar, yaitu alat untuk orang dengan gangguan penglihatan, akan membacanya dengan penekanan.' },
+    { t:'card', v:'ex', code:'<p>Ingat: <strong>jangan lupa menutup tag!</strong></p>',
+      notes:[
+        'Tampil tebal secara default.',
+        'Punya makna semantik "penting".',
+        'Cocok untuk beberapa kata kunci saja, bukan seluruh paragraf.'
+      ] },
+    { t:'card', v:'warn', b:'Jangan bungkus satu paragraf penuh dengan <code>&lt;strong&gt;</code>. Kalau semua tebal, tidak ada yang menonjol.' },
+    { t:'x', k:'type', q:'Buat teks "Penting!" jadi tebal dengan <strong> di dalam paragraf:',
+      starter:'<p>', ans:'<p><strong>Penting!</strong></p>',
+      h1:'Bungkus kata "Penting!" dengan <b>&lt;strong&gt;</b> dan <b>&lt;/strong&gt;</b>.',
+      h2:'Hasilnya: <b>&lt;p&gt;&lt;strong&gt;Penting!&lt;/strong&gt;&lt;/p&gt;</b>' } ] },
 
 { id:'s2l6', section:'Text & Formatting', title:'Menekankan dengan <em>',
   steps:[
-    { t:'card', v:'def', b:'<code>&lt;em&gt;</code> membuat teks jadi <i>miring</i> dengan makna penekanan.' },
-    { t:'card', v:'why', b:'Digunakan untuk kata yang dibaca dengan penekanan dalam kalimat.' },
-    { t:'card', v:'ex', code:'<p>Aku <em>sangat</em> suka kopi.</p>', notes:['Tampil miring secara default.','<code>em</code> = <i>emphasis</i>.'] },
-    { t:'card', v:'warn', b:'Jangan pakai <code>&lt;em&gt;</code> hanya untuk memiringkan teks tanpa alasan makna.' },
+    { t:'card', v:'def', b:'<code>&lt;em&gt;</code> membuat teks jadi miring, dengan makna penekanan. Ibaratnya seperti saat kamu menaikkan nada suara pada satu kata ketika bicara: "Aku sangat suka kopi". Kata "sangat" itu yang ditekankan.' },
+    { t:'card', v:'why', b:'Digunakan untuk kata yang perlu dibaca dengan penekanan dalam kalimat, atau istilah asing.' },
+    { t:'card', v:'ex', code:'<p>Aku <em>sangat</em> suka kopi.</p>',
+      notes:[
+        'Tampil miring secara default.',
+        '<code>&lt;em&gt;</code> adalah singkatan dari <em>emphasis</em> atau penekanan.'
+      ] },
+    { t:'card', v:'warn', b:'Jangan pakai <code>&lt;em&gt;</code> hanya untuk memiringkan teks tanpa alasan makna. Kalau cuma butuh miring, ada tag lain.' },
     { t:'x', k:'arrange', q:'Bungkus kata "benar-benar" dengan tag em:',
       tpl:'<p>Ini ___ menakjubkan___</p>',
-      pieces:['<em>','</em>','<strong>','</strong>'], ans:['<em>','</em>'],
-      h1:'Butuh tag pembuka DAN penutup em.', h2:'Gunakan <b>&lt;em&gt;</b> dan <b>&lt;/em&gt;</b>' } ] },
+      pieces:['<em>','</em>','<strong>','</strong>'],
+      ans:['<em>','</em>'],
+      h1:'Butuh tag pembuka DAN penutup em.',
+      h2:'Gunakan <b>&lt;em&gt;</b> dan <b>&lt;/em&gt;</b>' } ] },
 
 { id:'s2l7', section:'Text & Formatting', title:'<b> dan <i>',
   steps:[
-    { t:'card', v:'def', b:'<code>&lt;b&gt;</code> = teks tebal, <code>&lt;i&gt;</code> = teks miring. Hanya mengubah <b>tampilan</b>.' },
-    { t:'card', v:'why', b:'Cocok untuk nama produk, istilah teknis, atau nama ilmiah.' },
-    { t:'card', v:'ex', code:'<p>Produk: <b>SuperPhone X</b></p>\n<p>Nama ilmiah: <i>Panthera tigris</i></p>', notes:['<code>&lt;b&gt;</code> = bold, <code>&lt;i&gt;</code> = italic.','Tidak memberi makna tambahan.'] },
-    { t:'card', v:'warn', b:'Untuk makna penting, pakai <code>&lt;strong&gt;</code> atau <code>&lt;em&gt;</code>.' },
+    { t:'card', v:'def', b:'<code>&lt;b&gt;</code> membuat teks jadi tebal, dan <code>&lt;i&gt;</code> membuat teks jadi miring. Keduanya cuma mengubah tampilan, tanpa makna khusus. Ibaratnya seperti pena warna, cuma beda tampilan tapi tidak berarti apa-apa secara makna.' },
+    { t:'card', v:'why', b:'Cocok untuk nama produk, istilah teknis, atau nama ilmiah yang memang ditulis miring atau tebal secara konvensi.' },
+    { t:'card', v:'ex', code:'<p>Produk: <b>SuperPhone X</b></p>\n<p>Nama ilmiah: <i>Panthera tigris</i></p>',
+      notes:[
+        '<code>&lt;b&gt;</code> adalah singkatan dari <em>bold</em> atau tebal.',
+        '<code>&lt;i&gt;</code> adalah singkatan dari <em>italic</em> atau miring.',
+        'Tidak memberi makna tambahan.'
+      ] },
+    { t:'card', v:'warn', b:'Untuk makna penting, pakai <code>&lt;strong&gt;</code> atau <code>&lt;em&gt;</code>, bukan <code>&lt;b&gt;</code> atau <code>&lt;i&gt;</code>.' },
     { t:'x', k:'quiz', q:'Apa bedanya <b> dengan <strong>?',
-      opts:[['Tidak ada bedanya sama sekali',false],['<strong> punya makna "penting", <b> hanya tampilan',true],['<b> lebih besar',false],['<strong> tidak bisa dipakai di paragraf',false]],
-      ex:'Secara visual sama tebal, tapi <strong> punya makna penting.' } ] },
+      opts:[
+        ['Tidak ada bedanya sama sekali', false],
+        ['<strong> punya makna "penting", <b> hanya tampilan', true],
+        ['<b> lebih besar', false],
+        ['<strong> tidak bisa dipakai di paragraf', false]
+      ],
+      ex:'Secara visual sama-sama tebal, tapi <strong> menyampaikan makna penting.' } ] },
 
 { id:'s2l8', section:'Text & Formatting', title:'Menyorot dengan <mark>',
   steps:[
-    { t:'card', v:'def', b:'<code>&lt;mark&gt;</code> menyorot teks dengan warna latar kuning.' },
-    { t:'card', v:'why', b:'Dipakai untuk menandai kata kunci yang perlu diperhatikan.' },
-    { t:'card', v:'ex', code:'<p>Kata kunci: <mark>belajar HTML</mark> setiap hari.</p>', notes:['Warna default kuning.','Punya makna "relevan/sorot".'] },
-    { t:'card', v:'warn', b:'Jangan pakai <code>&lt;mark&gt;</code> untuk semua kata penting.' },
+    { t:'card', v:'def', b:'<code>&lt;mark&gt;</code> seperti menyorot tulisan pakai stabilo kuning. Kamu tandai bagian tertentu supaya langsung menarik perhatian.' },
+    { t:'card', v:'why', b:'Dipakai untuk menandai kata kunci penting, atau kata yang cocok dengan pencarian pengunjung.' },
+    { t:'card', v:'ex', code:'<p>Kata kunci: <mark>belajar HTML</mark> setiap hari.</p>',
+      notes:[
+        'Warna default kuning.',
+        'Punya makna "yang disorot" atau "relevan".'
+      ] },
+    { t:'card', v:'warn', b:'Jangan pakai <code>&lt;mark&gt;</code> untuk semua kata. Kalau semua disorot, tidak ada yang menonjol.' },
     { t:'x', k:'fill', q:'Pilih tag untuk menyorot teks:', tpl:'<p>Ini <___>penting</___></p>',
       chips:['mark','em','hr','br'], ans:'mark',
       h1:'Tag untuk menyorot seperti stabilo.', h2:'Pilih <b>mark</b>' } ] },
 
-{ id:'s2l9', section:'Text & Formatting', title:'Menggabungkan Tag Teks',
+{ id:'s2l9', section:'Text & Formatting', title:'Menggabungkan Tag',
   steps:[
-    { t:'card', v:'def', b:'Kamu bisa menggabungkan beberapa tag dalam satu paragraf. Aturan: <b>tag yang dibuka terakhir harus ditutup lebih dulu</b>.' },
-    { t:'card', v:'why', b:'Nesting yang rapi bikin browser menampilkan dengan benar.' },
-    { t:'card', v:'ex', code:'<p>Aku <strong>suka <em>kopi</em></strong> panas.</p>', notes:['<code>&lt;strong&gt;</code> dibuka dulu.','<code>&lt;em&gt;</code> harus ditutup dulu.','Baru <code>&lt;strong&gt;</code> ditutup.'] },
+    { t:'card', v:'def', b:'Kamu bisa menggabungkan beberapa tag dalam satu paragraf. Aturannya, tag yang dibuka terakhir harus ditutup lebih dulu. Ibaratnya seperti kotak bersarang: kalau kamu buka kotak besar, terus buka kotak kecil di dalamnya, yang ditutup dulu adalah kotak kecilnya.' },
+    { t:'card', v:'why', b:'Nesting atau menyusun bersarang yang rapi bikin browser menampilkan dengan benar, dan memudahkan orang lain membaca kodemu.' },
+    { t:'card', v:'ex', code:'<p>Aku <strong>suka <em>kopi</em></strong> panas.</p>',
+      notes:[
+        '<code>&lt;strong&gt;</code> dibuka dulu.',
+        '<code>&lt;em&gt;</code> di dalamnya dibuka setelahnya.',
+        '<code>&lt;em&gt;</code> harus ditutup lebih dulu.',
+        'Baru <code>&lt;strong&gt;</code> ditutup.'
+      ] },
     { t:'card', v:'warn', b:'Jangan menyilang tag. Selalu tutup dari dalam ke luar.' },
-    { t:'x', k:'fix', q:'Perbaiki agar tag-nya rapi:',
+    { t:'x', k:'fix', q:'Kode di bawah ada yang salah. Perbaiki agar tag-nya rapi:',
       broken:'<p>Aku <strong>suka <em>kopi</strong></em></p>',
       ans:'<p>Aku <strong>suka <em>kopi</em></strong></p>',
-      h1:'Perhatikan urutan penutupan tag.', h2:'<b>&lt;em&gt;</b> harus ditutup sebelum <b>&lt;/strong&gt;</b>' } ] },
+      h1:'Perhatikan urutan penutupan tag. Yang dibuka terakhir ditutup dulu.',
+      h2:'<b>&lt;em&gt;</b> harus ditutup sebelum <b>&lt;/strong&gt;</b>' } ] },
 
 { id:'s2l10', section:'Text & Formatting', title:'Latihan Teks Campuran',
   steps:[
-    { t:'card', v:'def', b:'Uji semua yang kamu pelajari tentang teks dengan menggabungkan beberapa tag sekaligus.' },
-    { t:'card', v:'why', b:'Di halaman web nyata, tag jarang dipakai sendirian.' },
+    { t:'card', v:'def', b:'Saatnya gabungkan semua yang kamu pelajari tentang tulisan. Di halaman web nyata, tag jarang dipakai sendirian, biasanya digabung sekaligus.' },
+    { t:'card', v:'why', b:'Melatihmu berpikir cepat: kapan pakai <code>&lt;h2&gt;</code>, kapan pakai <code>&lt;p&gt;</code>, kapan pakai <code>&lt;strong&gt;</code>.' },
     { t:'x', k:'type', q:'Buat judul h2 "Menu", lalu paragraf berisi "Kopi <strong>spesial</strong>":',
       starter:'', ans:'<h2>Menu</h2><p>Kopi <strong>spesial</strong></p>',
-      loose:'contains', required:['<h2>menu</h2>','<p>','</p>','<strong>spesial</strong>'],
-      h1:'Tulis judul h2 dulu, lalu paragraf.', h2:'Format: <b>&lt;h2&gt;Menu&lt;/h2&gt;</b> dan <b>&lt;p&gt;Kopi &lt;strong&gt;spesial&lt;/strong&gt;&lt;/p&gt;</b>' },
-    { t:'x', k:'analyze', hardOnly:true,
-      code:'<p>Teks <strong>penting</strong> dan <em>miring</em>.</p>\n<p>Lanjutan <mark>sorotan</mark>.</p>',
-      q:'Elemen apa yang membuat teks jadi <b>kuning seperti stabilo</b>?',
-      opts:[['<strong>',false],['<em>',false],['<mark>',true],['<p>',false]],
-      ex:'&lt;mark&gt; menyorot teks dengan latar kuning default.' } ] },
+      loose:'contains',
+      required:['<h2>menu</h2>','<p>','</p>','<strong>spesial</strong>'],
+      h1:'Tulis judul h2 dulu, lalu paragraf dengan strong di dalamnya.',
+      h2:'Format: <b>&lt;h2&gt;Menu&lt;/h2&gt;</b> dan <b>&lt;p&gt;Kopi &lt;strong&gt;spesial&lt;/strong&gt;&lt;/p&gt;</b>' } ] },
 
 { id:'s3l1', section:'Links & Images', title:'Membuat Link dengan <a>',
   steps:[
-    { t:'card', v:'def', b:'Tag <code>&lt;a&gt;</code> membuat <b>hyperlink</b> — teks atau gambar yang bisa diklik.' },
-    { t:'card', v:'why', b:'Link adalah inti dari "web" — yang menghubungkan satu halaman ke halaman lain.' },
-    { t:'card', v:'ex', code:'<a href="https://example.com">Kunjungi Example</a>', notes:['<code>href</code> berisi alamat tujuan.','Teks di antara tag = teks yang diklik.'] },
-    { t:'card', v:'warn', b:'Jangan lupa menulis <code>href</code> lengkap dengan tanda kutip.' },
-    { t:'x', k:'fill', q:'Lengkapi atribut untuk link ke google.com:', tpl:'<a ___="https://google.com">Google</a>',
+    { t:'card', v:'def', b:'Tag <code>&lt;a&gt;</code> membuat hyperlink, yaitu tulisan yang bisa diklik untuk pindah ke halaman lain. Ibaratnya seperti pintu penghubung antara dua ruangan: kamu lewat pintu untuk masuk ke ruangan lain.' },
+    { t:'card', v:'why', b:'Link adalah inti dari web, yang menghubungkan satu halaman ke halaman lain. Tanpa link, setiap halaman akan terisolasi.' },
+    { t:'card', v:'ex', code:'<a href="https://example.com">Kunjungi Example</a>',
+      notes:[
+        '<code>href</code> adalah atribut yang berisi alamat tujuan link.',
+        'Tulisan "Kunjungi Example" adalah bagian yang bisa diklik pengunjung.'
+      ] },
+    { t:'card', v:'warn', b:'Jangan lupa menulis <code>href</code> lengkap dengan tanda kutip. Tanpa itu, link tidak bisa diklik.' },
+    { t:'x', k:'fill', q:'Lengkapi atribut untuk link ke google.com:',
+      tpl:'<a ___="https://google.com">Google</a>',
       chips:['href','src','link','url'], ans:'href',
       h1:'Atribut ini menyimpan alamat tujuan.', h2:'Pilih <b>href</b>' } ] },
 
 { id:'s3l2', section:'Links & Images', title:'Menampilkan Gambar dengan <img>',
   steps:[
-    { t:'card', v:'def', b:'<code>&lt;img&gt;</code> menampilkan gambar dengan atribut <code>src</code> dan <code>alt</code>.' },
-    { t:'card', v:'why', b:'Atribut <code>alt</code> penting kalau gambar gagal dimuat dan untuk screen reader.' },
-    { t:'card', v:'ex', code:'<img src="kucing.jpg" alt="Kucing oranye sedang tidur">', notes:['<code>src</code> = alamat gambar.','<code>alt</code> = deskripsi singkat.','Tidak butuh tag penutup.'] },
-    { t:'card', v:'warn', b:'Jangan lewatkan <code>alt</code>.' },
+    { t:'card', v:'def', b:'<code>&lt;img&gt;</code> menampilkan gambar. Punya dua atribut penting: <code>src</code> untuk alamat gambar, dan <code>alt</code> untuk tulisan pengganti kalau gambar gagal dimuat. Ibaratnya seperti bingkai foto: kamu taruh foto di dalamnya, dan tulisan kecil di belakang untuk berjaga-jaga.' },
+    { t:'card', v:'why', b:'Atribut <code>alt</code> penting untuk orang yang tidak bisa melihat gambar, misalnya karena gangguan penglihatan. Tulisan alt dibacakan oleh pembaca layar.' },
+    { t:'card', v:'ex', code:'<img src="kucing.jpg" alt="Kucing oranye sedang tidur">',
+      notes:[
+        '<code>src</code> menentukan alamat gambar.',
+        '<code>alt</code> berisi deskripsi singkat gambar.',
+        'Tidak butuh tag penutup karena void element.'
+      ] },
+    { t:'card', v:'warn', b:'Jangan lewatkan <code>alt</code>. Selain untuk aksesibilitas, kalau gambar gagal dimuat, alt akan muncul sebagai tulisan ganti.' },
     { t:'x', k:'quiz', q:'Apa fungsi atribut alt pada <img>?',
-      opts:[['Mengatur ukuran gambar',false],['Mengganti gambar kalau gagal dimuat & membantu aksesibilitas',true],['Mengatur warna gambar',false],['Membuat gambar bergerak',false]],
-      ex:'alt = teks alternatif.' } ] },
+      opts:[
+        ['Mengatur ukuran gambar', false],
+        ['Mengganti gambar kalau gagal dimuat & membantu pembaca layar', true],
+        ['Mengatur warna gambar', false],
+        ['Membuat gambar bergerak', false]
+      ],
+      ex:'<code>alt</code> adalah tulisan alternatif untuk gambar.' } ] },
 
 { id:'s3l3', section:'Links & Images', title:'Link ke Halaman Lain',
   steps:[
-    { t:'card', v:'def', b:'Kamu bisa membuat link ke beberapa tujuan sekaligus dalam satu halaman.' },
-    { t:'card', v:'ex', code:'<p>Kunjungi <a href="https://google.com" target="_blank">Google</a> atau <a href="/tentang.html">halaman tentang</a>.</p>', notes:['<code>target="_blank"</code> = buka di tab baru.','<code>/tentang.html</code> = link relatif.'] },
+    { t:'card', v:'def', b:'Kamu bisa membuat beberapa link sekaligus dalam satu halaman.' },
+    { t:'card', v:'ex', code:'<p>Kunjungi <a href="https://google.com">Google</a> atau <a href="/tentang.html">halaman tentang</a>.</p>',
+      notes:[
+        '<code>/tentang.html</code> adalah link ke file lain di website yang sama.',
+        'Link bisa ditaruh di dalam paragraf seperti tulisan biasa.'
+      ] },
     { t:'x', k:'type', q:'Buat link berisi "Klik di sini" menuju https://example.com',
       starter:'', ans:'<a href="https://example.com">Klik di sini</a>',
-      h1:'Bungkus teks "Klik di sini" dengan <b>&lt;a&gt;</b>.', h2:'Format: <b>&lt;a href="..."&gt;teks&lt;/a&gt;</b>' } ] },
+      h1:'Bungkus tulisan "Klik di sini" dengan <b>&lt;a&gt;</b>.',
+      h2:'Format: <b>&lt;a href="..."&gt;teks&lt;/a&gt;</b>' } ] },
 
 { id:'s3l4', section:'Links & Images', title:'Halaman dengan Gambar', steps:[{ t:'card', v:'def', b:'// TODO: isi konten.' }] },
 
 { id:'s4l1', section:'Lists & Tables', title:'Daftar dengan <ul>',
   steps:[
-    { t:'card', v:'def', b:'<code>&lt;ul&gt;</code> membuat <b>unordered list</b> — daftar dengan tanda bulat.' },
+    { t:'card', v:'def', b:'<code>&lt;ul&gt;</code> membuat daftar dengan tanda bulat, yang disebut unordered list. Ibaratnya seperti daftar belanjaan: beras, telur, sayur. Tidak penting mana dulu, yang penting semua tercatat.' },
     { t:'card', v:'why', b:'Cocok untuk daftar yang urutannya tidak penting.' },
-    { t:'card', v:'ex', code:'<ul>\n  <li>Kopi</li>\n  <li>Teh</li>\n  <li>Susu</li>\n</ul>', notes:['<code>&lt;ul&gt;</code> = pembungkus daftar.','<code>&lt;li&gt;</code> = satu item daftar.'] },
-    { t:'card', v:'warn', b:'Jangan taruh teks langsung di dalam <code>&lt;ul&gt;</code>.' },
+    { t:'card', v:'ex', code:'<ul>\n  <li>Kopi</li>\n  <li>Teh</li>\n  <li>Susu</li>\n</ul>',
+      notes:[
+        '<code>&lt;ul&gt;</code> adalah pembungkus daftar.',
+        '<code>&lt;li&gt;</code> adalah satu item daftar, singkatan dari <em>list item</em>.',
+        'Tanda bulat muncul otomatis.'
+      ] },
+    { t:'card', v:'warn', b:'Jangan taruh tulisan langsung di dalam <code>&lt;ul&gt;</code>. Setiap item harus dibungkus <code>&lt;li&gt;</code>.' },
     { t:'x', k:'type', q:'Buat daftar tidak berurutan berisi "Apel" dan "Jeruk":',
       starter:'', ans:'<ul><li>Apel</li><li>Jeruk</li></ul>',
       loose:'contains', required:['<ul>','</ul>','<li>apel</li>','<li>jeruk</li>'],
       h1:'Gunakan <b>&lt;ul&gt;</b> sebagai pembungkus dan <b>&lt;li&gt;</b> untuk tiap item.',
-      h2:'Format: <b>&lt;ul&gt;&lt;li&gt;Apel&lt;/li&gt;&lt;li&gt;Jeruk&lt;/li&gt;&lt;/ul&gt;</b>' },
-    { t:'x', k:'analyze', hardOnly:true,
-      code:'<ul>\n  <li>Apel</li>\n  <li>Jeruk</li>\n  <li>Mangga</li>\n</ul>',
-      q:'Ada berapa item <code>&lt;li&gt;</code> di dalam daftar di atas?',
-      opts:[['1',false],['2',false],['3',true],['4',false]],
-      ex:'Ada 3 tag &lt;li&gt;: Apel, Jeruk, Mangga.' } ] },
+      h2:'Format: <b>&lt;ul&gt;&lt;li&gt;Apel&lt;/li&gt;&lt;li&gt;Jeruk&lt;/li&gt;&lt;/ul&gt;</b>' } ] },
 
 { id:'s4l2', section:'Lists & Tables', title:'Daftar Berurutan <ol>',
   steps:[
-    { t:'card', v:'def', b:'<code>&lt;ol&gt;</code> membuat daftar bernomor.' },
-    { t:'card', v:'why', b:'Dipakai kalau urutan penting — langkah memasak, prosedur.' },
-    { t:'card', v:'ex', code:'<ol>\n  <li>Panaskan air</li>\n  <li>Masukkan kopi</li>\n</ol>', notes:['Struktur isi sama dengan <code>&lt;ul&gt;</code>.','Bedanya cuma tanda di depan: angka.'] },
+    { t:'card', v:'def', b:'<code>&lt;ol&gt;</code> membuat daftar bernomor. Ibaratnya seperti langkah-langkah resep: pertama panaskan air, kedua masukkan kopi, ketiga aduk. Urutannya penting dan tidak bisa ditukar.' },
+    { t:'card', v:'why', b:'Dipakai kalau urutan penting, misalnya langkah memasak, prosedur, atau peringkat.' },
+    { t:'card', v:'ex', code:'<ol>\n  <li>Panaskan air</li>\n  <li>Masukkan kopi</li>\n</ol>',
+      notes:[
+        'Struktur isi sama dengan <code>&lt;ul&gt;</code>.',
+        'Bedanya cuma tanda di depan: angka 1, 2, 3.'
+      ] },
     { t:'card', v:'warn', b:'Jangan pakai <code>&lt;ol&gt;</code> kalau urutannya tidak penting.' },
     { t:'x', k:'quiz', q:'Kapan sebaiknya pakai <ol> bukan <ul>?',
-      opts:[['Untuk daftar tanpa urutan penting',false],['Untuk langkah-langkah yang urutannya penting',true],['Untuk gambar',false],['Untuk tabel',false]],
-      ex:'<ol> dipakai kalau urutan penting.' } ] },
+      opts:[
+        ['Untuk daftar tanpa urutan penting', false],
+        ['Untuk langkah-langkah yang urutannya penting', true],
+        ['Untuk gambar', false],
+        ['Untuk tabel', false]
+      ],
+      ex:'<ol> dipakai kalau urutan penting, seperti langkah memasak.' } ] },
 
-{ id:'s4l3', section:'Lists & Tables', title:'Nested List', steps:[{ t:'card', v:'def', b:'// TODO: isi konten.' }] },
+{ id:'s4l3', section:'Lists & Tables', title:'Daftar Bersarang', steps:[{ t:'card', v:'def', b:'// TODO: isi konten.' }] },
 { id:'s4l4', section:'Lists & Tables', title:'Tabel dengan <table>', steps:[{ t:'card', v:'def', b:'// TODO: isi konten.' }] },
 
 { id:'s5l1', section:'Forms', title:'Form dan <input>',
   steps:[
-    { t:'card', v:'def', b:'<code>&lt;form&gt;</code> membungkus kolom-kolom isian. <code>&lt;input&gt;</code> adalah kolom isian itu sendiri.' },
-    { t:'card', v:'why', b:'Form dipakai di mana-mana: login, pendaftaran, pencarian, checkout.' },
-    { t:'card', v:'ex', code:'<form>\n  <label>Nama:</label>\n  <input type="text" placeholder="Tulis namamu">\n</form>', notes:['<code>type</code> menentukan jenis input.','<code>placeholder</code> = teks bantuan.'] },
-    { t:'card', v:'warn', b:'Jangan lupa pasang <code>type</code>.' },
+    { t:'card', v:'def', b:'<code>&lt;form&gt;</code> itu seperti formulir kertas yang kamu isi di kantor pos: ada nama, alamat, tanda tangan. Di web, <code>&lt;form&gt;</code> membungkus kolom-kolom isian. <code>&lt;input&gt;</code> adalah satu kotak isian di dalamnya.' },
+    { t:'card', v:'why', b:'Form dipakai di mana-mana: login, pendaftaran, pencarian, checkout. Ini cara pengunjung mengirim data ke website.' },
+    { t:'card', v:'ex', code:'<form>\n  <label>Nama:</label>\n  <input type="text" placeholder="Tulis namamu">\n</form>',
+      notes:[
+        '<code>type</code> adalah atribut yang menentukan jenis isian.',
+        '<code>placeholder</code> adalah tulisan bantuan yang muncul sebelum diisi.',
+        '<code>&lt;label&gt;</code> adalah keterangan di atas kolom.'
+      ] },
+    { t:'card', v:'warn', b:'Jangan lupa pasang <code>type</code>. Tanpa itu, browser menganggapnya isian tulisan biasa.' },
     { t:'x', k:'fill', q:'Pilih tipe input untuk password:', tpl:'<input type="___">',
       chips:['password','text','email','number'], ans:'password',
       h1:'Tipe input yang menyembunyikan karakter.', h2:'Pilih <b>password</b>' } ] },
@@ -946,13 +1214,18 @@ const LESSONS = [
 
 { id:'s6l1', section:'Semantic HTML', title:'Apa itu Semantic HTML?',
   steps:[
-    { t:'card', v:'def', b:'<b>Semantic HTML</b> berarti memakai tag yang maknanya jelas, bukan cuma <code>&lt;div&gt;</code>.' },
-    { t:'card', v:'why', b:'Tag semantik membantu mesin pencari dan pembaca layar memahami struktur halaman.' },
-    { t:'card', v:'ex', code:'<header>Judul Website</header>\n<main>Isi utama</main>\n<footer>Hak cipta 2025</footer>', notes:['<code>&lt;header&gt;</code> = bagian kepala.','<code>&lt;main&gt;</code> = isi utama.','<code>&lt;footer&gt;</code> = bagian kaki.'] },
-    { t:'card', v:'warn', b:'Jangan pakai <code>&lt;div&gt;</code> untuk semua hal.' },
+    { t:'card', v:'def', b:'<b>Semantic HTML</b> berarti memakai tag yang maknanya jelas, bukan cuma <code>&lt;div&gt;</code> untuk segalanya. Ibaratnya: kamu bisa saja menaruh semua barang di kardus yang sama dan memberi label "BARANG", tapi lebih rapi kalau labelnya "PAKAIAN", "SEPATU", "BUKU".' },
+    { t:'card', v:'why', b:'Tag yang jelas maknanya membantu mesin pencari dan pembaca layar memahami struktur halaman. Kodenya juga lebih mudah dibaca manusia.' },
+    { t:'card', v:'ex', code:'<header>Judul Website</header>\n<main>Isi utama</main>\n<footer>Hak cipta 2025</footer>',
+      notes:[
+        '<code>&lt;header&gt;</code> adalah bagian kepala halaman.',
+        '<code>&lt;main&gt;</code> adalah isi utama.',
+        '<code>&lt;footer&gt;</code> adalah bagian kaki halaman.'
+      ] },
+    { t:'card', v:'warn', b:'Jangan pakai <code>&lt;div&gt;</code> untuk semua hal. Kalau ada tag dengan makna yang cocok, pakai itu.' },
     { t:'x', k:'quiz', q:'Manakah yang termasuk tag semantik?',
       opts:[['<div>',false],['<span>',false],['<header>',true],['<b>',false]],
-      ex:'<header> punya makna jelas.' } ] },
+      ex:'<header> punya makna jelas sebagai bagian kepala halaman.' } ] },
 
 { id:'s6l2', section:'Semantic HTML', title:'<header>, <nav>, <main>', steps:[{ t:'card', v:'def', b:'// TODO: isi konten.' }] },
 { id:'s6l3', section:'Semantic HTML', title:'<section> & <article>', steps:[{ t:'card', v:'def', b:'// TODO: isi konten.' }] },
@@ -960,9 +1233,13 @@ const LESSONS = [
 
 { id:'s7l1', section:'Mini Projects', title:'Persiapan Proyek',
   steps:[
-    { t:'card', v:'def', b:'Selamat! Kamu sudah menyelesaikan dasar HTML. Sekarang waktunya membangun proyek nyata.' },
+    { t:'card', v:'def', b:'Selamat! Kamu sudah menyelesaikan dasar-dasar HTML. Sekarang waktunya membangun proyek nyata, seperti tukang bangunan yang akhirnya mulai mendirikan rumah sungguhan.' },
     { t:'card', v:'why', b:'Proyek melatihmu menggabungkan banyak tag dalam satu halaman.' },
-    { t:'card', v:'ex', notes:['Ada 6 proyek tersedia di tab <b>Proyek</b>.','Setiap proyek punya checklist yang tercentang otomatis.','Selesaikan proyek untuk +100 XP.'] },
+    { t:'card', v:'ex', notes:[
+      'Ada 6 proyek di tab <b>Proyek</b>.',
+      'Setiap proyek punya daftar syarat yang tercentang otomatis.',
+      'Selesaikan proyek untuk mendapat +100 XP.'
+    ] },
     { t:'x', k:'quiz', q:'Siap mulai proyek pertamamu?',
       opts:[['Siap!',true],['Nanti saja',false],['Belum tahu',false],['Tidak',false]],
       ex:'Semangat!' } ] },
@@ -974,7 +1251,24 @@ const LESSONS = [
 { id:'s7l7', section:'Mini Projects', title:'Portfolio Sederhana', steps:[{ t:'card', v:'def', b:'// TODO: isi konten.' }] }
 ];
 
-/* PROJECTS — label pakai tag mentah, di-render via appendReqLabel */
+const GLOSSARY = [
+  { term:'Kode', def:'Perintah tertulis yang dijalankan komputer. Seperti resep masakan untuk komputer.', chapter:'Lesson 0' },
+  { term:'Browser', def:'Aplikasi untuk membuka halaman web. Contoh: Chrome, Safari, Firefox, Edge. Ibarat jendela ke internet.', chapter:'Lesson 0' },
+  { term:'HTML', def:'Bahasa penanda untuk menyusun kerangka halaman web. Seperti kerangka rumah sebelum dicat.', chapter:'Lesson 1' },
+  { term:'Tag', def:'Label bertanda kurung siku untuk memberi keterangan bagian halaman. Seperti label stiker FRAGILE di kardus.', chapter:'Lesson 2' },
+  { term:'Kurung Siku', def:'Tanda < di depan dan > di belakang yang membungkus nama tag.', chapter:'Lesson 2' },
+  { term:'Tag Pembuka', def:'Tag di awal elemen. Contoh: <p>.', chapter:'Lesson 3' },
+  { term:'Tag Penutup', def:'Tag di akhir elemen, ditandai dengan garis miring /. Contoh: </p>.', chapter:'Lesson 3' },
+  { term:'Elemen', def:'Gabungan tag pembuka + isi + tag penutup. Seperti satu kotak sepatu utuh.', chapter:'Lesson 4' },
+  { term:'Isi (Content)', def:'Tulisan atau objek yang berada di antara tag pembuka dan tag penutup.', chapter:'Lesson 2' },
+  { term:'Void Element', def:'Tag yang tidak punya pasangan penutup. Contoh: <br>, <hr>, <img>.', chapter:'Lesson 3' },
+  { term:'Atribut', def:'Keterangan tambahan yang ditulis di dalam tag pembuka. Contoh: href="..." pada <a>.', chapter:'Lesson 3' },
+  { term:'Nesting', def:'Menaruh elemen di dalam elemen lain. Seperti kotak bersarang.', chapter:'Lesson 9 (Text)' },
+  { term:'DOCTYPE', def:'Baris paling atas dokumen HTML. Seperti cap "versi terbaru" di atas kertas resep.', chapter:'Lesson 6' },
+  { term:'Halaman Web', def:'Dokumen yang ditampilkan browser saat dibuka.', chapter:'Lesson 0' },
+  { term:'Kerangka Halaman', def:'Susunan bagian-bagian halaman: mana judul, mana isi, mana bagian bawah.', chapter:'Lesson 5' }
+];
+
 const PROJECTS = [
   { id:'p1', name:'Biodata HTML', desc:'Buat halaman biodata dirimu.', task:'Tugas: buat halaman HTML lengkap dengan <b>&lt;h1&gt;</b>, <b>&lt;p&gt;</b>, <b>&lt;ul&gt;</b> berisi 3 <b>&lt;li&gt;</b>, dan satu <b>&lt;strong&gt;</b>.',
     starter:'<!DOCTYPE html>\n<html>\n<body>\n  \n</body>\n</html>',
@@ -996,65 +1290,59 @@ const PROJECTS = [
       { label:'Ada tag <hr>', test:c=>/<hr[\s>\/]/i.test(c) }
     ] },
   { id:'p3', name:'Daftar Game Favorit', desc:'Buat halaman daftar game favorit.',
-    task:'Tugas: buat <b>&lt;h1&gt;</b>, <b>&lt;p&gt;</b>, dan <b>&lt;ol&gt;</b> dengan minimal 3 <b>&lt;li&gt;</b>. Bungkus salah satu nama game dengan <b>&lt;strong&gt;</b>.',
+    task:'Tugas: buat <b>&lt;h1&gt;</b>, <b>&lt;p&gt;</b>, dan <b>&lt;ol&gt;</b> dengan minimal 3 <b>&lt;li&gt;</b>.',
     starter:'<!DOCTYPE html>\n<html>\n<body>\n  <h1>Game Favoritku</h1>\n  <p>Ini daftar game favoritku.</p>\n  <ol>\n    \n  </ol>\n</body>\n</html>',
     reqs:[
       { label:'Ada tag <h1>', test:c=>/<h1[\s>]/i.test(c) },
       { label:'Ada tag <p>', test:c=>/<p[\s>]/i.test(c) },
-      { label:'Ada tag <ol> dengan minimal 3 <li>', test:c=>{const o=c.match(/<ol[\s>][\s\S]*?<\/ol>/i);return o && (o[0].match(/<li[\s>]/gi)||[]).length>=3;} },
-      { label:'Ada tag <strong> atau <b>', test:c=>/<(strong|b)[\s>]/i.test(c) },
-      { label:'Tag tertutup dengan benar', test:c=>{const o=(c.match(/<(?!\/|!|br|hr|img|input|meta|link)[a-z][a-z0-9]*/gi)||[]).length;const cl=(c.match(/<\//g)||[]).length;return cl>=o-1;} }
+      { label:'Ada tag <ol> dengan minimal 3 <li>', test:c=>{const o=c.match(/<ol[\s>][\s\S]*?<\/ol>/i);return o && (o[0].match(/<li[\s>]/gi)||[]).length>=3;} }
     ] },
-  { id:'p4', name:'Halaman Artikel', desc:'Buat halaman artikel dengan judul dan sub-judul.',
-    task:'Tugas: buat <b>&lt;h1&gt;</b>, <b>&lt;h2&gt;</b>, minimal 2 <b>&lt;p&gt;</b>, <b>&lt;em&gt;</b>, <b>&lt;strong&gt;</b>, dan <b>&lt;hr&gt;</b>.',
+  { id:'p4', name:'Halaman Artikel', desc:'Buat halaman artikel sederhana.',
+    task:'Tugas: buat <b>&lt;h1&gt;</b>, <b>&lt;h2&gt;</b>, minimal 2 <b>&lt;p&gt;</b>, dan <b>&lt;hr&gt;</b>.',
     starter:'<!DOCTYPE html>\n<html>\n<body>\n  <h1>Judul Artikel</h1>\n  <hr>\n  \n</body>\n</html>',
     reqs:[
       { label:'Ada tag <h1>', test:c=>/<h1[\s>]/i.test(c) },
       { label:'Ada tag <h2>', test:c=>/<h2[\s>]/i.test(c) },
       { label:'Ada minimal 2 tag <p>', test:c=>(c.match(/<p[\s>]/gi)||[]).length>=2 },
-      { label:'Ada tag <em> atau <i>', test:c=>/<(em|i)[\s>]/i.test(c) },
-      { label:'Ada tag <strong> atau <b>', test:c=>/<(strong|b)[\s>]/i.test(c) },
       { label:'Ada tag <hr>', test:c=>/<hr[\s>\/]/i.test(c) }
     ] },
-  { id:'p5', name:'Form Pendaftaran', desc:'Buat form pendaftaran dengan input nama, email, password.',
+  { id:'p5', name:'Form Pendaftaran', desc:'Buat form pendaftaran sederhana.',
     task:'Tugas: buat <b>&lt;form&gt;</b> dengan 2+ <b>&lt;label&gt;</b>, input text, email, password, dan <b>&lt;button&gt;</b>.',
     starter:'<!DOCTYPE html>\n<html>\n<body>\n  <h1>Form Pendaftaran</h1>\n  <form>\n    \n  </form>\n</body>\n</html>',
     reqs:[
       { label:'Ada tag <form>', test:c=>/<form[\s>]/i.test(c) },
-      { label:'Ada <input type="text">', test:c=>/<input[^>]*type\s*=\s*["']?text/i.test(c) || /<input(?![^>]*type\s*=)[^>]*>/i.test(c) },
       { label:'Ada <input type="email">', test:c=>/<input[^>]*type\s*=\s*["']?email/i.test(c) },
       { label:'Ada <input type="password">', test:c=>/<input[^>]*type\s*=\s*["']?password/i.test(c) },
-      { label:'Ada tag <button> atau <input type="submit">', test:c=>/<button[\s>]/i.test(c) || /<input[^>]*type\s*=\s*["']?submit/i.test(c) },
-      { label:'Ada minimal 2 tag <label>', test:c=>(c.match(/<label[\s>]/gi)||[]).length>=2 }
+      { label:'Ada <button>', test:c=>/<button[\s>]/i.test(c) },
+      { label:'Ada minimal 2 <label>', test:c=>(c.match(/<label[\s>]/gi)||[]).length>=2 }
     ] },
-  { id:'p6', name:'Portfolio Sederhana', desc:'Buat halaman portfolio dengan foto dan skill.',
-    task:'Tugas: buat <b>&lt;h1&gt;</b>, <b>&lt;img alt="..."&gt;</b> dengan alt tidak kosong, <b>&lt;p&gt;</b>, <b>&lt;ul&gt;</b> 3+ <b>&lt;li&gt;</b>, <b>&lt;a href&gt;</b>, dan <b>&lt;hr&gt;</b>.',
+  { id:'p6', name:'Portfolio Sederhana', desc:'Buat halaman portfolio sederhana.',
+    task:'Tugas: buat <b>&lt;h1&gt;</b>, <b>&lt;img alt="..."&gt;</b>, <b>&lt;p&gt;</b>, <b>&lt;ul&gt;</b> dengan 3+ <b>&lt;li&gt;</b>, dan <b>&lt;hr&gt;</b>.',
     starter:'<!DOCTYPE html>\n<html>\n<body>\n  <h1>Nama Kamu</h1>\n  <img src="" alt="">\n  <hr>\n  \n</body>\n</html>',
     reqs:[
       { label:'Ada tag <h1>', test:c=>/<h1[\s>]/i.test(c) },
-      { label:'Ada tag <img> dengan alt terisi', test:c=>/<img[^>]*alt\s*=\s*["'][^"']+["']/i.test(c) },
+      { label:'Ada <img> dengan alt terisi', test:c=>/<img[^>]*alt\s*=\s*["'][^"']+["']/i.test(c) },
       { label:'Ada tag <p>', test:c=>/<p[\s>]/i.test(c) },
-      { label:'Ada tag <ul> dengan minimal 3 <li>', test:c=>{const u=c.match(/<ul[\s>][\s\S]*?<\/ul>/i);return u && (u[0].match(/<li[\s>]/gi)||[]).length>=3;} },
-      { label:'Ada tag <a> dengan href', test:c=>/<a[^>]*href\s*=\s*["'][^"']+["']/i.test(c) },
+      { label:'Ada <ul> dengan minimal 3 <li>', test:c=>{const u=c.match(/<ul[\s>][\s\S]*?<\/ul>/i);return u && (u[0].match(/<li[\s>]/gi)||[]).length>=3;} },
       { label:'Ada tag <hr>', test:c=>/<hr[\s>\/]/i.test(c) }
     ] }
 ];
 
 const ACHIEVEMENTS = [
-  { id:'first_lesson', name:'First Lesson', desc:'Selesaikan 1 lesson', icon:'star',  test:s=>Object.keys(s.completed).length>=1 },
-  { id:'five_lessons', name:'5 Lessons',    desc:'Selesaikan 5 lesson', icon:'star',  test:s=>Object.keys(s.completed).length>=5 },
-  { id:'ten_lessons',  name:'10 Lessons',   desc:'Selesaikan 10 lesson',icon:'star',  test:s=>Object.keys(s.completed).length>=10 },
-  { id:'halfway',      name:'Halfway',      desc:'Setengah kurikulum', icon:'flag', test:s=>Object.keys(s.completed).length >= Math.floor(LESSONS.length/2) },
-  { id:'first_project',name:'First Project',desc:'Selesaikan 1 proyek', icon:'box',   test:s=>Object.keys(s.projects).length>=1 },
-  { id:'three_projects',name:'3 Projects',  desc:'Selesaikan 3 proyek', icon:'box',   test:s=>Object.keys(s.projects).length>=3 },
-  { id:'streak3',      name:'3 Day Streak', desc:'Belajar 3 hari berturut', icon:'fire', test:s=>s.streak>=3 },
-  { id:'level2',       name:'Rising Star',  desc:'Capai HTML Beginner', icon:'bolt',  test:s=>s.xp>=100 },
-  { id:'level3',       name:'Explorer',     desc:'Capai HTML Explorer', icon:'compass', test:s=>s.xp>=300 },
+  { id:'first_lesson', name:'Langkah Pertama', desc:'Selesaikan 1 lesson', icon:'star', test:s=>Object.keys(s.completed).length>=1 },
+  { id:'five_lessons', name:'5 Lesson',     desc:'Selesaikan 5 lesson', icon:'star', test:s=>Object.keys(s.completed).length>=5 },
+  { id:'ten_lessons',  name:'10 Lesson',    desc:'Selesaikan 10 lesson', icon:'star', test:s=>Object.keys(s.completed).length>=10 },
+  { id:'halfway',      name:'Setengah Jalan', desc:'Setengah kurikulum', icon:'flag', test:s=>Object.keys(s.completed).length >= Math.floor(LESSONS.length/2) },
+  { id:'first_project',name:'Proyek Pertama', desc:'Selesaikan 1 proyek', icon:'box', test:s=>Object.keys(s.projects).length>=1 },
+  { id:'three_projects',name:'3 Proyek',    desc:'Selesaikan 3 proyek', icon:'box', test:s=>Object.keys(s.projects).length>=3 },
+  { id:'streak3',      name:'3 Hari Beruntun', desc:'Belajar 3 hari berturut', icon:'fire', test:s=>s.streak>=3 },
+  { id:'level2',       name:'Naik Level',   desc:'Capai HTML Beginner', icon:'bolt', test:s=>s.xp>=100 },
+  { id:'level3',       name:'Penjelajah',   desc:'Capai HTML Explorer', icon:'compass', test:s=>s.xp>=300 },
   { id:'review3',      name:'Rajin Review', desc:'3 review harian', icon:'compass', test:s=>(s.reviewLog && Object.keys(s.reviewLog).length>=3) }
 ];
 
 const DEFAULT_STATE = {
-  version: 7,
+  version: 9,
   completed:{}, current:null, xp:0, streak:0, lastActive:null,
   achievements:[], projects:{}, checkpoints:{},
   hardMode:{}, seenTip:{},
@@ -1081,7 +1369,7 @@ function loadState(){
       state.reviewLog = state.reviewLog || {};
       state.practiceActivity = state.practiceActivity || { count:0, totalSeconds:0 };
     }
-  }catch(e){ storageOK = false; setTimeout(()=>toast('Penyimpanan tidak tersedia — progres tidak akan tersimpan.'), 800); }
+  }catch(e){ storageOK = false; setTimeout(()=>toast('Penyimpanan tidak tersedia.'), 800); }
 }
 function saveState(){
   if(!storageOK) return;
@@ -1094,14 +1382,8 @@ const $$ = s => Array.from(document.querySelectorAll(s));
 function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 function escAttr(s){ return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
-/* ============================================================
-   appendReqLabel — render label checklist dengan aman.
-   Tag seperti <h1> dibungkus <code> via textContent (bukan innerHTML),
-   jadi tidak akan pernah di-parse sebagai elemen HTML asli.
-   ============================================================ */
 function appendReqLabel(container, label){
   const str = String(label);
-  // Pisah berdasarkan pola tag HTML: <h1>, </h1>, <img>, <br/>, dsb.
   const parts = str.split(/(<\/?[a-zA-Z][a-zA-Z0-9]*\s*\/?>)/g);
   parts.forEach(p => {
     if(!p) return;
@@ -1181,7 +1463,6 @@ function addXp(n){ state.xp += n; showXp(n); checkAchievements(); saveState(); }
 function checkAchievements(){
   ACHIEVEMENTS.forEach(a=>{ if(!state.achievements.includes(a.id) && a.test(state)) state.achievements.push(a.id); });
 }
-
 function formatDuration(sec){
   if(sec < 5) return 'beberapa detik';
   if(sec < 60) return sec + ' detik';
@@ -1278,7 +1559,7 @@ function showScreen(id){
 
   $('#screen-auth').classList.add('hidden');
   $('#bottomnav').style.display = '';
-  ['home','lesson','practice','projects','profile'].forEach(s=>{
+  ['home','lesson','practice','projects','profile','glossary'].forEach(s=>{
     const el = $('#screen-'+s);
     if(el) el.classList.toggle('hidden', s !== id);
   });
@@ -1288,11 +1569,40 @@ function showScreen(id){
   if(id === 'practice') renderPractice();
   if(id === 'projects') renderProjects();
   if(id === 'profile') renderProfile();
+  if(id === 'glossary') renderGlossary();
+}
+
+function renderGlossary(filter){
+  const list = $('#glossary-list');
+  list.innerHTML = '';
+  const q = (filter || '').toLowerCase().trim();
+  const items = GLOSSARY.filter(g =>
+    !q || g.term.toLowerCase().includes(q) || g.def.toLowerCase().includes(q)
+  );
+  if(!items.length){
+    list.innerHTML = '<div class="empty-state">Tidak ada istilah yang cocok.</div>';
+    return;
+  }
+  items.forEach(g=>{
+    const el = document.createElement('div');
+    el.className = 'glossary-item';
+    const t = document.createElement('p');
+    t.className = 'glossary-term';
+    t.textContent = g.term;
+    const d = document.createElement('p');
+    d.className = 'glossary-def';
+    d.textContent = g.def;
+    const m = document.createElement('p');
+    m.className = 'glossary-meta';
+    m.textContent = 'Diperkenalkan di: ' + g.chapter;
+    el.appendChild(t); el.appendChild(d); el.appendChild(m);
+    list.appendChild(el);
+  });
 }
 
 function showAuth(mode){
   currentScreen = 'auth';
-  ['home','lesson','practice','projects','profile'].forEach(s=>{
+  ['home','lesson','practice','projects','profile','glossary'].forEach(s=>{
     const el = $('#screen-'+s); if(el) el.classList.add('hidden');
   });
   $('#bottomnav').style.display = 'none';
@@ -1490,7 +1800,7 @@ $('#hard-switch').onclick = ()=>{
 let curLesson = null, curStep = 0;
 const CARD_META = {
   def:  { label:'Definisi', icon:'<path d="M4 19.5V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v13.5"/><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>' },
-  why:  { label:'Kenapa & Kapan', icon:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1"/>' },
+  why:  { label:'Kenapa penting', icon:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1"/>' },
   ex:   { label:'Contoh', icon:'<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>' },
   warn: { label:'Kesalahan umum', icon:'<path d="M10.3 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.7 3.86a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/>' }
 };
@@ -1564,7 +1874,7 @@ function renderStep(){
     const close = '<span class="tk-punct">&lt;/</span><span class="tk-tag">'+step.tag+'</span><span class="tk-punct">&gt;</span>';
     c.innerHTML =
       '<div class="elem-diagram">' +
-        '<div class="elem-labels"><span>Opening tag</span><span>Content</span><span>Closing tag</span></div>' +
+        '<div class="elem-labels"><span>Tag pembuka</span><span>Isi</span><span>Tag penutup</span></div>' +
         '<div class="elem-code">'+open+' <span class="tk-tx" style="color:#c4b5fd;font-weight:600">'+esc(step.content)+'</span> '+close+'</div>' +
         '<div class="elem-brace"></div>' +
         '<p class="elem-caption">Ketiganya bersama disebut <b style="color:#c4b5fd">Elemen</b>.</p>' +
@@ -1932,7 +2242,7 @@ function renderPractice(){
     empty.innerHTML =
       '<div class="review-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" style="width:13px;height:13px"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/></svg>Pengulangan Harian</div>' +
       '<h3 class="review-title">Belum ada lesson untuk direview</h3>' +
-      '<p style="font-size:13px;color:var(--text2);margin:0 0 14px">Selesaikan 1 lesson dulu di tab Belajar, lalu kembali ke sini untuk review harian.</p>';
+      '<p style="font-size:13px;color:var(--text2);margin:0 0 14px">Selesaikan 1 lesson dulu di tab Belajar, lalu kembali ke sini.</p>';
     box.appendChild(empty);
   }
 
@@ -2088,9 +2398,6 @@ function renderPracticeQuestion(){
   curLesson = savedLesson;
 }
 
-/* ============================================================
-   PROJECTS — checklist label dirender via appendReqLabel (aman)
-   ============================================================ */
 function renderProjects(){
   const box = $('#projects-list'); box.innerHTML = '';
   PROJECTS.forEach(p=>{
@@ -2124,12 +2431,10 @@ function renderProjects(){
         const on = r.test(code);
         const row = document.createElement('div');
         row.className = 'check-item' + (on?' on':'');
-        // checkbox (innerHTML aman — hanya SVG statis)
         const box = document.createElement('div');
         box.className = 'check-box' + (on?' on':'');
         box.innerHTML = on ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>' : '';
         row.appendChild(box);
-        // label (AMAN: pakai textContent / createTextNode via appendReqLabel)
         const lbl = document.createElement('span');
         appendReqLabel(lbl, r.label);
         row.appendChild(lbl);
@@ -2304,6 +2609,11 @@ $('#logout-btn').onclick = ()=>{
   });
 };
 
+$('#open-glossary-btn').onclick = ()=>{ showScreen('glossary'); };
+$('#glossary-back').onclick = ()=>{ showScreen('profile'); };
+$('#lesson-glossary').onclick = ()=>{ showScreen('glossary'); };
+$('#glossary-search').addEventListener('input', (e)=>{ renderGlossary(e.target.value); });
+
 let modalCb = null;
 function showModal(title, body, okText, cb){
   $('#modal-title').textContent = title;
@@ -2359,4 +2669,4 @@ function init(){
 init();
 </script>
 </body>
-  </html>
+      </html>
